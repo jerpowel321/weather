@@ -23,16 +23,16 @@ const Cards = (props) => {
 					{props.weather_state_name}
 				</Typography>
 				<Typography  align="left" variant="body2">
-					Current: {props.the_temp.toFixed(0)}°C
+					Current: {(props.the_temp*9/5 + 32).toFixed(0)}°F
                 </Typography>
 				<Typography align="left" variant="body2">
-					Min: {props.min_temp.toFixed(0)}°C
+					Min: {(props.min_temp*9/5 + 32).toFixed(0)}°F
                 </Typography>
 				<Typography align="left" variant="body2">
-					Max: {props.max_temp.toFixed(0)}°C
+					Max: {(props.max_temp*9/5 + 32).toFixed(0)}°F
                 </Typography>
 				<Typography align="left" variant="body2">
-					Wind: {props.wind_speed.toFixed(0)}°C
+					Wind: {props.wind_speed.toFixed(0)} mph
                 </Typography>
 				<Typography align="left" variant="body2">
 					Humidity: {props.humidity}%
