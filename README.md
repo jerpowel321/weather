@@ -37,3 +37,4 @@ https://needtrip.herokuapp.com/
 - Node
 - [MetaWeather API](https://www.metaweather.com/)
 - [Alpha Vantage](https://www.alphavantage.co/)
+- [COVID-19 API](https://covid19api.com/)
