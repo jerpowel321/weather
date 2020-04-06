@@ -7,6 +7,8 @@ import WeatherCard from '../components/Card';
 import Typography from '@material-ui/core/Typography';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import Stock from '../components/Stock';
+import Coronanews from '../components/Coronanews';
+import Footer from'../components/Footer';
 
 const darkBlue = lightBlue[900]
 
@@ -81,25 +83,26 @@ class Dashboard extends Component {
 				)
 		}
 	}
-	// componentDidMount() {
-	// 	fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/2487956")
-	// 		.then(res =>
-	// 			res.json()
-	// 		).then(
-	// 			(res) => {
-	// 				this.setState({
-	// 					weatherData: res,
-	// 					forecast: res.consolidated_weather,
-	// 					search: false
-	// 				});
-	// 			}
-	// 		)
-	// }
+	componentDidMount() {
+		fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/2487956")
+			.then(res =>
+				res.json()
+			).then(
+				(res) => {
+					this.setState({
+						weatherData: res,
+						forecast: res.consolidated_weather,
+						search: false
+					});
+				}
+			)
+	}
 
 	render() {
 		return (
 			<div id="dashboard">
 				<Appbar></Appbar>
+				<div id="content">
 				<Grid>
 					<Form parentCallback={this.callbackFunction} />
 				</Grid>
@@ -144,7 +147,10 @@ class Dashboard extends Component {
 						}
 					</Container>
 					<Stock></Stock>
+					<Coronanews></Coronanews>
 				</Grid>
+				</div>
+				<Footer></Footer>
 
 			</div >
 		);

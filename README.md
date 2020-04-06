@@ -1,4 +1,4 @@
-## Using MetaWeather API & 
+## Using MetaWeather API & Alpha Vantage API 
 
 
 ## 🔑 How to Run the App
