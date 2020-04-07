@@ -11,8 +11,8 @@ const Cards = (props) => {
 	let website = "https://www.metaweather.com/static/img/weather/png/64/" + props.weather_state_abbr + ".png";
 	let day = new Date(props.applicable_date);
 	return (
-		<Card style={{ width: "150px", borderStyle: "none", boxShadow: "none", padding: "none" }}>
-			<CardContent>
+		<Card style={{ width: "150px", borderStyle: "none", boxShadow: "none", padding: "none" , paddingTop:"0px"}}>
+			<CardContent style={{paddingTop: "0px"}}>
 				<Typography align="center" variant="h6" style={{ color: darkBlue, padding: "2px" }}>
 					{props.applicable_date}
 				</Typography>

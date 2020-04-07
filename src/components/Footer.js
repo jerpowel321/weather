@@ -24,20 +24,12 @@ const useStyles = makeStyles({
 
 export default function SimpleBottomNavigation() {
   const classes = useStyles();
-//   const [value, setValue] = React.useState(0);
 
   return (
     <BottomNavigation
-    //   value={value}
-    //   onChange={(event, newValue) => {
-    //     setValue(newValue);
-    //   }}
-      showLabels
       className={classes.root}
     >
-      <BottomNavigationAction className={classes.nav} label="Recents" icon={<RestoreIcon />} />
-      <BottomNavigationAction className={classes.nav} label="Favorites" icon={<FavoriteIcon />} />
-      <BottomNavigationAction className={classes.nav} label="Nearby" icon={<LocationOnIcon />} />
+     
     </BottomNavigation>
   );
 }

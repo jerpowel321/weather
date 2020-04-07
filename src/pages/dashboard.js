@@ -8,9 +8,10 @@ import Typography from '@material-ui/core/Typography';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import Stock from '../components/Stock';
 import Coronanews from '../components/Coronanews';
-import Footer from'../components/Footer';
-
+import Footer from '../components/Footer';
+import red from '@material-ui/core/colors/red';
 const darkBlue = lightBlue[900]
+const darkRed = red[900]
 
 
 class Dashboard extends Component {
@@ -61,8 +62,6 @@ class Dashboard extends Component {
 									res.json()
 								).then(
 									(res) => {
-										console.log("this is the data", res)
-										console.log("This is the forecast", res.consolidated_weather)
 										this.setState({
 											weatherData: res,
 											forecast: res.consolidated_weather,
@@ -84,18 +83,18 @@ class Dashboard extends Component {
 		}
 	}
 	componentDidMount() {
-		fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/2487956")
-			.then(res =>
-				res.json()
-			).then(
-				(res) => {
-					this.setState({
-						weatherData: res,
-						forecast: res.consolidated_weather,
-						search: false
-					});
-				}
-			)
+		// fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/2487956")
+		// 	.then(res =>
+		// 		res.json()
+		// 	).then(
+		// 		(res) => {
+		// 			this.setState({
+		// 				weatherData: res,
+		// 				forecast: res.consolidated_weather,
+		// 				search: false
+		// 			});
+		// 		}
+		// 	)
 	}
 
 	render() {
@@ -103,21 +102,13 @@ class Dashboard extends Component {
 			<div id="dashboard">
 				<Appbar></Appbar>
 				<div id="content">
-				<Grid>
-					<Form parentCallback={this.callbackFunction} />
-				</Grid>
-				<Grid>
-					<Container maxWidth="lg" style={{paddingTop: "10px"}}>
-						{this.state.error === true ? (
-							<Typography align="center" variant="h5" style={{color: darkBlue, paddingTop: "30px"}}>
-								{this.state.errorMessage}
-							</Typography>
-						) : null
-						}
+
+					<Grid>
+						{/* <Container maxWidth="lg" > */}
 						{this.state.forecast.length > 0 ?
-							<Grid container direction="row" justify='center'>
+							<Grid container direction="row" >
 								<Grid item >
-									<Typography variant="h5" style={{ color: darkBlue, paddingTop: "16px" }}>
+									<Typography variant="h5" style={{ color: darkBlue}}>
 										{this.state.weatherData.title}
 									</Typography>
 									<Typography variant="body1">
@@ -125,7 +116,7 @@ class Dashboard extends Component {
 									</Typography>
 								</Grid>
 								{this.state.forecast.map(day => (
-									<Grid align="center" key={day.applicable_date}>
+									<Grid item align="center" key={day.applicable_date} style={{paddingTop:"0px"}}>
 										<WeatherCard
 											weather_state_name={day.weather_state_name}
 											weather_state_abbr={day.weather_state_abbr}
@@ -145,10 +136,19 @@ class Dashboard extends Component {
 
 							: null
 						}
-					</Container>
-					<Stock></Stock>
-					<Coronanews></Coronanews>
-				</Grid>
+						<Grid>
+							<Form parentCallback={this.callbackFunction} />
+							{this.state.error === true ? (
+								<Typography variant="subtitle1" style={{ color: darkRed, paddingTop: "30px" }}>
+									{this.state.errorMessage}
+								</Typography>
+							) : null
+							}
+						</Grid>
+						{/* </Container> */}
+						<Stock></Stock>
+						{/* <Coronanews></Coronanews> */}
+					</Grid>
 				</div>
 				<Footer></Footer>
 

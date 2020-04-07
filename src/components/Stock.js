@@ -1,18 +1,21 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { Container } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 import lightBlue from '@material-ui/core/colors/lightBlue';
+import SearchIcon from '@material-ui/icons/Search';
+import red from '@material-ui/core/colors/red';
+const darkRed = red[900]
 const darkBlue = lightBlue[900]
-
 const stockKey = process.env.REACT_APP_STOCK_KEY;
 
-class Form extends React.Component {
+class Stock extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
 			stock: '',
 			stockData: {},
+			priceData: {},
 			searchStock: false,
 			error: false,
 			errorMessage: "Looks like the symbol you searched for does not exist. Please try again with a valid symbol.",
@@ -22,28 +25,22 @@ class Form extends React.Component {
 	}
 
 	handleInputChange = (event) => {
-		// Updating State
 		let { name, value } = event.target;
 		this.setState({
-			[name]: value
+			[name]: value,
+			error: false
 		});
 	}
 
 	searchStock() {
 		let currentComponent = this;
-		fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + this.state.stock+ "&interval=5min&apikey=" + stockKey)
+		fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + this.state.stock + "&interval=5min&apikey=" + stockKey)
 			.then(res =>
 				res.json()
 			)
 			.then(
 				(result) => {
 					console.log("This is the data", result)
-					// console.log("This is the data at 0", result["Meta Data"]["2. Symbol"])
-					// console.log("OPEN" ,result["Time Series (5min)"]["2020-04-03 16:00:00"]["1. open"])
-					// console.log("HIGH", result["Time Series (5min)"]["2020-04-03 16:00:00"]["2. high"])
-					// console.log("LOW", result["Time Series (5min)"]["2020-04-03 16:00:00"]["3. low"])
-					// console.log("Close", result["Time Series (5min)"]["2020-04-03 16:00:00"]["4. close"])
-					// console.log("Volume",result["Time Series (5min)"]["2020-04-03 16:00:00"]["5. volume"])
 					if (result["Error Message"]) {
 						currentComponent.setState({
 							error: true,
@@ -52,37 +49,46 @@ class Form extends React.Component {
 						return;
 					}
 					else {
-						currentComponent.setState({
-							error: false,
-							stockData: result,
+					let price = result["Time Series (5min)"]
+					let priceObj = price[Object.keys(price)[0]];
+					this.setState({
+						stockData: result,
+						priceData: priceObj,
+					}, () => {
+						this.setState({
 							searchSuccess: true,
-						});
+							error: false
+						})
+					});
 					}
-					
 				}
-				
 			)
-			
 	}
 	render() {
 		return (
 			<Container maxWidth={"md"}>
-				<h2 align="center">Enter stock symbol.</h2>
+				<Typography variant="h5" align="center" style={{ color: darkBlue }}>Enter stock symbol.</Typography>
 				<form align="center" noValidate autoComplete="off">
 					<TextField style={{ marginRight: "20px" }} id="standard-basic" label="Stock Symbol" name="stock" onChange={this.handleInputChange} />
-					<Button style={{ backgroundColor: darkBlue, color: "white", marginTop: "10px" }} onClick={() => this.searchStock()} variant="contained">Search</Button>
+					<Button style={{ backgroundColor: darkBlue, color: "white", marginTop: "10px" }} onClick={() => this.searchStock()} variant="contained"><SearchIcon />Search</Button>
 					{this.state.searchSuccess ? (
 						<div>
-						<p>There is stuff here</p>
-						<p>Symbol: </p>
+							<Typography variant="body1">Stock Symbol: {this.state.stockData["Meta Data"]["2. Symbol"]}</Typography>
+							<Typography variant="body1">Open: ${Number(this.state.priceData["1. open"]).toFixed(2)}</Typography>
+							<Typography variant="body1">High: ${Number(this.state.priceData["2. high"]).toFixed(2)}</Typography>
+							<Typography variant="body1">Low: ${Number(this.state.priceData["3. low"]).toFixed(2)}</Typography>
+							<Typography variant="body1">Close: ${Number(this.state.priceData["4. close"]).toFixed(2)}</Typography>
+							<Typography variant="body1">Volume: {this.state.priceData["5. volume"]} shares</Typography>
 						</div>
-					) 
+					)
 						: null
 					}
 					{this.state.error === true ? (
-						<p>{this.state.errorMessage}</p>
+						<Typography variant="subtitle1" style={{ color: darkRed, paddingTop: "30px" }}>
+							{this.state.errorMessage}
+						</Typography>
 					)
-					: <p>No errors</p>
+						: null
 					}
 				</form>
 			</Container>
@@ -90,7 +96,6 @@ class Form extends React.Component {
 	}
 }
 
-
-export default Form;
+export default Stock;
 
 

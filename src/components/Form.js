@@ -1,8 +1,9 @@
 import React from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import { Container } from '@material-ui/core';
+import { Container, Typography } from '@material-ui/core';
 import lightBlue from '@material-ui/core/colors/lightBlue';
+import SearchIcon from '@material-ui/icons/Search';
 const darkBlue = lightBlue[900]
 
 
@@ -35,13 +36,13 @@ class Form extends React.Component {
   }
 	render() {
 		return (
-			<Container maxWidth={"md"}>
-				<h2 align="center">Please provide the city you would like to search.</h2>
-				<form align="center" noValidate autoComplete="off">
-					<TextField style={{marginRight: "20px"}} id="standard-basic" label="City" name="city" onChange={this.handleInputChange} />
-					<Button style={{backgroundColor: darkBlue, color: "white", marginTop: "10px"}} onClick={this.searchClick} variant="contained">Search</Button>
+			<div >
+				<Typography variant="h5" align="left" style={{color: darkBlue}}>Please provide the city you would like to search.</Typography>
+				<form align="left" noValidate autoComplete="off">
+				<TextField style={{marginRight: "20px"}} id="standard-basic" label="City" name="city" onChange={this.handleInputChange} />
+					<Button style={{backgroundColor: darkBlue, color: "white", marginTop: "10px"}} onClick={this.searchClick} variant="contained"><SearchIcon/>Search</Button>
 				</form>
-			</Container>
+			</div>
 		);
 	}
 }
