@@ -33,7 +33,8 @@ class Dashboard extends Component {
 		console.log("This is the childData", childData)
 		this.setState({
 			city: childData.city,
-			search: childData.search
+			search: childData.search,
+			error: false
 		})
 		if (childData.search === true) {
 			fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/search/?query=" + childData.city)
@@ -83,18 +84,18 @@ class Dashboard extends Component {
 		}
 	}
 	componentDidMount() {
-		// fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/2487956")
-		// 	.then(res =>
-		// 		res.json()
-		// 	).then(
-		// 		(res) => {
-		// 			this.setState({
-		// 				weatherData: res,
-		// 				forecast: res.consolidated_weather,
-		// 				search: false
-		// 			});
-		// 		}
-		// 	)
+		fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/2487956")
+			.then(res =>
+				res.json()
+			).then(
+				(res) => {
+					this.setState({
+						weatherData: res,
+						forecast: res.consolidated_weather,
+						search: false
+					});
+				}
+			)
 	}
 
 	render() {
@@ -102,52 +103,55 @@ class Dashboard extends Component {
 			<div id="dashboard">
 				<Appbar></Appbar>
 				<div id="content">
-
-					<Grid>
-						{/* <Container maxWidth="lg" > */}
-						{this.state.forecast.length > 0 ?
-							<Grid container direction="row" >
-								<Grid item >
-									<Typography variant="h5" style={{ color: darkBlue}}>
-										{this.state.weatherData.title}
-									</Typography>
-									<Typography variant="body1">
-										{this.state.weatherData.parent.title}
-									</Typography>
-								</Grid>
-								{this.state.forecast.map(day => (
-									<Grid item align="center" key={day.applicable_date} style={{paddingTop:"0px"}}>
-										<WeatherCard
-											weather_state_name={day.weather_state_name}
-											weather_state_abbr={day.weather_state_abbr}
-											applicable_date={day.applicable_date}
-											the_temp={day.the_temp}
-											min_temp={day.min_temp}
-											max_temp={day.max_temp}
-											wind_speed={day.wind_speed}
-											humidity={day.humidity}
-											visability={day.visability}
-											predictability={day.predictability}
-										/>
+					<Grid container>
+						<Grid item item xs={12} sm={8}>
+							{this.state.forecast.length > 0 ?
+								<Grid container direction="row" >
+									<Grid item >
+										<Typography variant="h5" style={{ color: darkBlue }}>
+											{this.state.weatherData.title}
+										</Typography>
+										<Typography variant="body1">
+											{this.state.weatherData.parent.title}
+										</Typography>
 									</Grid>
-								))}
+									{this.state.forecast.map(day => (
+										<Grid item align="center" key={day.applicable_date} style={{ paddingTop: "0px" }}>
+											<WeatherCard
+												weather_state_name={day.weather_state_name}
+												weather_state_abbr={day.weather_state_abbr}
+												applicable_date={day.applicable_date}
+												the_temp={day.the_temp}
+												min_temp={day.min_temp}
+												max_temp={day.max_temp}
+												wind_speed={day.wind_speed}
+												humidity={day.humidity}
+												visability={day.visability}
+												predictability={day.predictability}
+											/>
+										</Grid>
+									))}
 
-							</Grid>
+								</Grid>
 
-							: null
-						}
-						<Grid>
-							<Form parentCallback={this.callbackFunction} />
-							{this.state.error === true ? (
-								<Typography variant="subtitle1" style={{ color: darkRed, paddingTop: "30px" }}>
-									{this.state.errorMessage}
-								</Typography>
-							) : null
+								: null
 							}
+							<Grid container>
+								<Grid item>
+									<Form parentCallback={this.callbackFunction} />
+									{this.state.error === true ? (
+										<Typography variant="subtitle1" style={{ color: darkRed, paddingTop: "30px" }}>
+											{this.state.errorMessage}
+										</Typography>
+									) : null
+									}
+								</Grid>
+							</Grid>
 						</Grid>
-						{/* </Container> */}
-						<Stock></Stock>
-						{/* <Coronanews></Coronanews> */}
+						<Grid item item xs={12} sm={4}>
+							<Stock/>
+						</Grid>
+						<Coronanews></Coronanews>
 					</Grid>
 				</div>
 				<Footer></Footer>

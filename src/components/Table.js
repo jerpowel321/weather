@@ -10,7 +10,7 @@ import Paper from '@material-ui/core/Paper';
 
 const useStyles = makeStyles({
   table: {
-    maxWidth: 700,
+    maxWidth: "700px",
   },
 });
 
@@ -30,7 +30,7 @@ export default function DenseTable(props) {
     createData('🇨🇳China', data[4]["NewConfirmed"], data[4]["TotalConfirmed"], data[4]["NewDeaths"],data[4]["TotalDeaths"], data[4]["NewRecovered"], data[4]["TotalRecovered"])
   ];
   return (
-    <TableContainer component={Paper}>
+    <TableContainer style={{width: "700px"}}component={Paper}>
       <Table className={classes.table} size="small" aria-label="a dense table">
         <TableHead>
           <TableRow>

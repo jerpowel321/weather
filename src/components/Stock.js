@@ -5,6 +5,8 @@ import { Container, Typography } from '@material-ui/core';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import SearchIcon from '@material-ui/icons/Search';
 import red from '@material-ui/core/colors/red';
+import indigo from '@material-ui/core/colors/indigo'
+const indigoBlue = indigo[500]
 const darkRed = red[900]
 const darkBlue = lightBlue[900]
 const stockKey = process.env.REACT_APP_STOCK_KEY;
@@ -18,9 +20,8 @@ class Stock extends React.Component {
 			priceData: {},
 			searchStock: false,
 			error: false,
-			errorMessage: "Looks like the symbol you searched for does not exist. Please try again with a valid symbol.",
+			errorMessage: "Please try again with a valid stock symbol.",
 			searchSuccess: false,
-			stockData: []
 		};
 	}
 
@@ -72,13 +73,13 @@ class Stock extends React.Component {
 					<TextField style={{ marginRight: "20px" }} id="standard-basic" label="Stock Symbol" name="stock" onChange={this.handleInputChange} />
 					<Button style={{ backgroundColor: darkBlue, color: "white", marginTop: "10px" }} onClick={() => this.searchStock()} variant="contained"><SearchIcon />Search</Button>
 					{this.state.searchSuccess ? (
-						<div>
-							<Typography variant="body1">Stock Symbol: {this.state.stockData["Meta Data"]["2. Symbol"]}</Typography>
-							<Typography variant="body1">Open: ${Number(this.state.priceData["1. open"]).toFixed(2)}</Typography>
-							<Typography variant="body1">High: ${Number(this.state.priceData["2. high"]).toFixed(2)}</Typography>
-							<Typography variant="body1">Low: ${Number(this.state.priceData["3. low"]).toFixed(2)}</Typography>
-							<Typography variant="body1">Close: ${Number(this.state.priceData["4. close"]).toFixed(2)}</Typography>
-							<Typography variant="body1">Volume: {this.state.priceData["5. volume"]} shares</Typography>
+						<div style={{paddingTop: "10px", paddingLeft: "20%", color: indigoBlue }}>
+							<Typography align="left" variant="body1">Stock Symbol: {this.state.stockData["Meta Data"]["2. Symbol"]}</Typography>
+							<Typography align="left" variant="body1">Open: ${Number(this.state.priceData["1. open"]).toFixed(2)}</Typography>
+							<Typography align="left" variant="body1">High: ${Number(this.state.priceData["2. high"]).toFixed(2)}</Typography>
+							<Typography align="left" variant="body1">Low: ${Number(this.state.priceData["3. low"]).toFixed(2)}</Typography>
+							<Typography align="left" variant="body1">Close: ${Number(this.state.priceData["4. close"]).toFixed(2)}</Typography>
+							<Typography align="left" variant="body1">Volume: {this.state.priceData["5. volume"]} shares</Typography>
 						</div>
 					)
 						: null

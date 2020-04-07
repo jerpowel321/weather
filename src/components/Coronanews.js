@@ -4,8 +4,12 @@ import Button from '@material-ui/core/Button';
 import { Container } from '@material-ui/core';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import Table from '../components/Table';
-import Typography from '@material-ui/core/Typography'
-
+import Typography from '@material-ui/core/Typography';
+import SearchIcon from '@material-ui/icons/Search';
+import Grid from '@material-ui/core/Grid';
+import indigo from '@material-ui/core/colors/indigo'
+const indigoBlue = indigo[500]
+const indigoDark = indigo[900]
 const darkBlue = lightBlue[900]
 
 
@@ -19,6 +23,8 @@ class Coronanews extends React.Component {
 			ww: [],
 			china: [],
 			italy: [],
+			spain: [],
+			germany: [],
 			usa: [],
 			error: false,
 			errorMessage: "Hmm double check your spelling and make sure you capitalize properly. Then try again with a valid country name.",
@@ -34,38 +40,54 @@ class Coronanews extends React.Component {
 			)
 			.then(
 				(result) => {
-					console.log("This is the data", result)
-					// if (result["Error Message"]) {
-					// 	currentComponent.setState({
-					// 		error: true,
-					// 		searchSuccess: false,
-					// 	});
-					// 	return;
-					// }
-					// else {
 					this.setState({
 						data: result,
-						ww: [result["Global"]["NewConfirmed"], result["Global"]["TotalConfirmed"], result["Global"]["NewDeaths"], result["Global"]["TotalDeaths"], result["Global"]["NewRecovered"], result["Global"]["TotalRecovered"]],
-						usa: [result["Countries"][233]],
-						spain: [result["Countries"][205]],
-						italy: [result["Countries"][106]],
-						germany: [result["Countries"][79]],
-						china: [result["Countries"][44]],
+						ww: [result["Global"]["NewConfirmed"], result["Global"]["TotalConfirmed"], result["Global"]["NewDeaths"], result["Global"]["TotalDeaths"], result["Global"]["NewRecovered"], result["Global"]["TotalRecovered"]]
 					}, () => {
-						this.setState({
-							searchSuccess: true,
-							error: false
-						})
-
-					});
-
-
-					// }
-					console.log("USA Result", result["Countries"][233])
-					console.log("Spain Result", result["Countries"][205])
-					console.log("Italy Result", result["Countries"][106])
-					console.log("Germany Result", result["Countries"][79])
-					console.log("China Result", result["Countries"][44])
+						if (this.state.ww.length > 0) {
+							for (let j = 0; j < 5; j++) {
+								for (let i = 0; i < this.state.data["Countries"].length; i++) {
+									if (this.state.data["Countries"][i]["Country"] === "China" && j===4) {
+										let countryInfo = this.state.data["Countries"][i];
+										this.setState({
+											error: false,
+											china: countryInfo,
+											searchSuccess: true,
+										})
+									}
+									if (this.state.data["Countries"][i]["Country"] === "United States of America") {
+										let countryInfo = this.state.data["Countries"][i];
+										this.setState({
+											error: false,
+											usa: countryInfo,
+										})
+									}
+									if (this.state.data["Countries"][i]["Country"] === "Spain") {
+										let countryInfo = this.state.data["Countries"][i];
+										this.setState({
+											error: false,
+											spain: countryInfo,
+										})
+									}
+									if (this.state.data["Countries"][i]["Country"] === "Italy") {
+										let countryInfo = this.state.data["Countries"][i];
+										this.setState({
+											error: false,
+											italy: countryInfo,
+										})
+									}
+									if (this.state.data["Countries"][i]["Country"] === "Germany") {
+										let countryInfo = this.state.data["Countries"][i];
+										this.setState({
+											error: false,
+											germany: countryInfo,
+										})
+									}
+								}
+							} 
+						}
+					}
+					);
 				}
 			)
 	}
@@ -84,13 +106,12 @@ class Coronanews extends React.Component {
 			for (let i = 0; i < this.state.data["Countries"].length; i++) {
 				if (this.state.data["Countries"][i]["Country"] === this.state.country) {
 					let countryInfo = this.state.data["Countries"][i];
-					console.log(countryInfo)
 					this.setState({
 						error: false,
 						countryData: countryInfo,
 						countryDataLoaded: true,
 					})
-					return;	
+					return;
 				}
 			}
 			this.setState({
@@ -101,62 +122,71 @@ class Coronanews extends React.Component {
 
 	render() {
 		return (
-			<Container maxWidth={"md"}>
-				{this.state.searchSuccess ? (
-					<Table
-						wwncases={this.state.ww[0]}
-						wwcases={this.state.ww[1]}
-						wwndeaths={this.state.ww[2]}
-						wwdeaths={this.state.ww[3]}
-						wwnrecovered={this.state.ww[4]}
-						wwrecovered={this.state.ww[5]}
-						usa={this.state.usa[0]}
-						spain={this.state.spain[0]}
-						italy={this.state.italy[0]}
-						germany={this.state.germany[0]}
-						china={this.state.china[0]}
-					></Table>
-				)
-					: null
-				}
+			<Grid container>
+				<Grid sm={1} item ></Grid>
+				<Grid xs={12} sm={7} item>
+					<Container maxWidth={"md"} align="center" style={{ padding: "50px 0px 0px 150px" }}>
+						{this.state.searchSuccess ? (
+							<Table
+								wwncases={this.state.ww[0]}
+								wwcases={this.state.ww[1]}
+								wwndeaths={this.state.ww[2]}
+								wwdeaths={this.state.ww[3]}
+								wwnrecovered={this.state.ww[4]}
+								wwrecovered={this.state.ww[5]}
+								usa={this.state.usa}
+								spain={this.state.spain}
+								italy={this.state.italy}
+								germany={this.state.germany}
+								china={this.state.china}
+							>
 
-				<h2 align="center">Search Country.</h2>
-				<form align="center" noValidate autoComplete="off">
-					<TextField style={{ marginRight: "20px" }} id="standard-basic" label="Country" name="country" onChange={this.handleInputChange} />
-					<Button style={{ backgroundColor: darkBlue, color: "white", marginTop: "10px" }} onClick={() => this.searchCases()} variant="contained">Search</Button>
-					{this.state.countryDataLoaded === true ? (
-						<Container maxWidth={'sm'} align="left">
-							<Typography variant="h6">Based on Johns Hopkins University Center for Systems Science and Engineering</Typography>
-							<Typography variant="body1">
-								{this.state.country} New Confirmed Cases: {this.state.countryData["NewConfirmed"]}
+							</Table>
+						)
+							: null
+						}
+					</Container>
+					<Typography variant="body1" style={{ paddingTop: "15px", color: indigoDark, paddingLeft: "25%" }}>Based on Johns Hopkins University Center for Systems Science and Engineering.</Typography>
+				</Grid>
+				<Grid xs={12} sm={4} item>
+					<Typography variant="h5" style={{ color: darkBlue, padding: "50px 20px 10px 50px" }} align="center">Search Country.</Typography>
+					<form align="center" noValidate autoComplete="off">
+						<TextField style={{ marginRight: "20px" }} id="standard-basic" label="Country" name="country" onChange={this.handleInputChange} />
+						<Button style={{ backgroundColor: darkBlue, color: "white", marginTop: "10px" }} onClick={() => this.searchCases()} variant="contained"><SearchIcon />Search</Button>
+						{this.state.countryDataLoaded === true ? (
+							<Container align="center" maxWidth={'sm'} style={{ paddingTop: "20px", color: indigoBlue }}>
+								<Typography align="left" variant="body1" >
+									{this.state.country} New Confirmed Cases: {this.state.countryData["NewConfirmed"]}
 								</Typography>
-								<Typography variant="body1">
-								{this.state.country} Total Confirmed Cases: {this.state.countryData["TotalConfirmed"]}
+								<Typography align="left" variant="body1">
+									{this.state.country} Total Confirmed Cases: {this.state.countryData["TotalConfirmed"]}
 								</Typography>
-								<Typography variant="body1">
-								{this.state.country} New Deaths: {this.state.countryData["NewDeaths"]}
+								<Typography align="left" variant="body1">
+									{this.state.country} New Deaths: {this.state.countryData["NewDeaths"]}
 								</Typography>
-								<Typography variant="body1">
-								{this.state.country} Total Deaths: {this.state.countryData["TotalDeaths"]}
+								<Typography align="left" variant="body1">
+									{this.state.country} Total Deaths: {this.state.countryData["TotalDeaths"]}
 								</Typography>
-								<Typography variant="body1">
-								{this.state.country} New Recovering Cases: {this.state.countryData["NewRecovered"]}
+								<Typography align="left" variant="body1">
+									{this.state.country} New Recovering Cases: {this.state.countryData["NewRecovered"]}
 								</Typography>
-								<Typography variant="body1">
-								{this.state.country} Total Recovered Cases: {this.state.countryData["TotalRecovered"]}
-							</Typography>
-						</Container>
-					)
-						: null
-					}
-					{this.state.error === true ? (
-						<p>{this.state.errorMessage}</p>
-					)
-						: null
-					}
-				</form>
-			</Container>
+								<Typography align="left" variant="body1">
+									{this.state.country} Total Recovered Cases: {this.state.countryData["TotalRecovered"]}
+								</Typography>
+							</Container>
+						)
+							: null
+						}
+						{this.state.error === true ? (
+							<p>{this.state.errorMessage}</p>
+						)
+							: null
+						}
+					</form>
+				</Grid>
+			</Grid>
 		);
+
 	}
 }
 
