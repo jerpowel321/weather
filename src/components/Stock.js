@@ -5,8 +5,7 @@ import { Container, Typography } from '@material-ui/core';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import SearchIcon from '@material-ui/icons/Search';
 import red from '@material-ui/core/colors/red';
-import indigo from '@material-ui/core/colors/indigo'
-const indigoBlue = indigo[500]
+import Grid from '@material-ui/core/Grid'
 const darkRed = red[900]
 const darkBlue = lightBlue[900]
 const stockKey = process.env.REACT_APP_STOCK_KEY;
@@ -22,6 +21,11 @@ class Stock extends React.Component {
 			error: false,
 			errorMessage: "Please try again with a valid stock symbol.",
 			searchSuccess: false,
+			nflx: {},
+			fb: {},
+			tsla: {},
+			msft: {},
+			initialLoaded: false
 		};
 	}
 
@@ -33,23 +37,62 @@ class Stock extends React.Component {
 		});
 	}
 
-	searchStock() {
-		let currentComponent = this;
-		fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + this.state.stock + "&interval=5min&apikey=" + stockKey)
-			.then(res =>
-				res.json()
-			)
-			.then(
-				(result) => {
-					console.log("This is the data", result)
-					if (result["Error Message"]) {
-						currentComponent.setState({
-							error: true,
-							searchSuccess: false,
-						});
-						return;
+
+	componentDidMount() {
+		let stocks = [ "NFLX", "FB", "TSLA", "MSFT"];
+		for (let i = 0; i < 4; i++) {
+			let stock = stocks[i]
+			fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + stock + "&interval=5min&apikey=" + stockKey)
+				.then(res =>
+					res.json()
+				)
+				.then(
+					(result) => {
+						let price = result["Time Series (5min)"]
+						let priceObj = price[Object.keys(price)[0]];
+						if (stock === "NFLX") {
+							this.setState({
+								nflx: priceObj,
+							})
+						}
+						else if (stock === "FB") {
+							this.setState({
+								fb: priceObj,
+							})
+						}
+						else if (stock === "TSLA") {
+							this.setState({
+								tsla: priceObj,
+							})
+						}
+						else {
+							this.setState({
+								msft: priceObj,
+								initialLoaded: true
+							})
+						}
 					}
-					else {
+			)
+	}
+}
+
+searchStock() {
+	let currentComponent = this;
+	fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + this.state.stock + "&interval=5min&apikey=" + stockKey)
+		.then(res =>
+			res.json()
+		)
+		.then(
+			(result) => {
+				console.log("This is the data", result)
+				if (result["Error Message"]) {
+					currentComponent.setState({
+						error: true,
+						searchSuccess: false,
+					});
+					return;
+				}
+				else {
 					let price = result["Time Series (5min)"]
 					let priceObj = price[Object.keys(price)[0]];
 					this.setState({
@@ -61,19 +104,22 @@ class Stock extends React.Component {
 							error: false
 						})
 					});
-					}
 				}
-			)
-	}
-	render() {
-		return (
-			<Container maxWidth={"md"}>
-				<Typography variant="h5" align="center" style={{ color: darkBlue }}>Enter stock symbol.</Typography>
-				<form align="center" noValidate autoComplete="off">
-					<TextField style={{ marginRight: "20px" }} id="standard-basic" label="Stock Symbol" name="stock" onChange={this.handleInputChange} />
-					<Button style={{ backgroundColor: darkBlue, color: "white", marginTop: "10px" }} onClick={() => this.searchStock()} variant="contained"><SearchIcon />Search</Button>
+			}
+		)
+}
+render() {
+	return (
+		<Container>
+			<div>
+				<Typography variant="h5" align="center" style={{ color: darkBlue, paddingTop: "10px" }}>Enter stock symbol.</Typography>
+				<form align="center" noValidate autoComplete="off" >
+					<div style={{ padding: "10px" }}>
+						<TextField style={{ marginRight: "20px" }} id="standard-basic" label="Stock Symbol" name="stock" onChange={this.handleInputChange} />
+						<Button style={{ backgroundColor: darkBlue, color: "white", marginTop: "10px" }} onClick={() => this.searchStock()} variant="contained"><SearchIcon />Search</Button>
+					</div>
 					{this.state.searchSuccess ? (
-						<div style={{paddingTop: "10px", paddingLeft: "20%", color: indigoBlue }}>
+						<div style={{ paddingTop: "10px", paddingLeft: "20%", color: "black" }}>
 							<Typography align="left" variant="body1">Stock Symbol: {this.state.stockData["Meta Data"]["2. Symbol"]}</Typography>
 							<Typography align="left" variant="body1">Open: ${Number(this.state.priceData["1. open"]).toFixed(2)}</Typography>
 							<Typography align="left" variant="body1">High: ${Number(this.state.priceData["2. high"]).toFixed(2)}</Typography>
@@ -85,16 +131,41 @@ class Stock extends React.Component {
 						: null
 					}
 					{this.state.error === true ? (
-						<Typography variant="subtitle1" style={{ color: darkRed, paddingTop: "30px" }}>
+						<Typography variant="subtitle1" style={{ color: darkRed, paddingBottom: "20px" }}>
 							{this.state.errorMessage}
 						</Typography>
 					)
-						: null
+						: <div style={{ paddingBottom: "20px" }}></div>
 					}
 				</form>
-			</Container>
-		);
-	}
+			</div>
+
+			{this.state.initialLoaded ? (
+				<Grid container align="center">
+					<Grid item xs={3}>
+						<img height="50px" src="/netflix.png" alt="Netflix Logo" />
+						<Typography align="center" variant="body1"> ${Number(this.state.nflx["4. close"]).toFixed(2)}</Typography>
+					</Grid>
+					<Grid item xs={3}>
+						<img height="50px" src="/facebook.png" alt="Facebook Logo" />
+						<Typography align="center" variant="body1"> ${Number(this.state.fb["4. close"]).toFixed(2)}</Typography>
+					</Grid>
+					<Grid item xs={3}>
+						<img height="50px" src="/microsoft.png" alt="Microsoft Logo" />
+						<Typography align="center" variant="body1"> ${Number(this.state.msft["4. close"]).toFixed(2)}</Typography>
+					</Grid>
+					<Grid item xs={3}>
+						<img height="50px" src="/tesla.png" alt="Tesla Logo" />
+						<Typography align="center" variant="body1"> ${Number(this.state.tsla["4. close"]).toFixed(2)}</Typography>
+					</Grid>
+				</Grid>
+			)
+				: null
+			}
+
+		</Container>
+	);
+}
 }
 
 export default Stock;

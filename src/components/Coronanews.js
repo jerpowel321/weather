@@ -7,9 +7,8 @@ import Table from '../components/Table';
 import Typography from '@material-ui/core/Typography';
 import SearchIcon from '@material-ui/icons/Search';
 import Grid from '@material-ui/core/Grid';
-import indigo from '@material-ui/core/colors/indigo'
-const indigoBlue = indigo[500]
-const indigoDark = indigo[900]
+import red from '@material-ui/core/colors/red';
+const darkRed = red[900]
 const darkBlue = lightBlue[900]
 
 
@@ -27,7 +26,7 @@ class Coronanews extends React.Component {
 			germany: [],
 			usa: [],
 			error: false,
-			errorMessage: "Hmm double check your spelling and make sure you capitalize properly. Then try again with a valid country name.",
+			errorMessage: "Double check your spelling and make sure you capitalize properly. Then try again with a valid country name.",
 			searchSuccess: false,
 			data: []
 		};
@@ -122,10 +121,9 @@ class Coronanews extends React.Component {
 
 	render() {
 		return (
-			<Grid container>
-				<Grid sm={1} item ></Grid>
-				<Grid xs={12} sm={7} item>
-					<Container maxWidth={"md"} align="center" style={{ padding: "50px 0px 0px 150px" }}>
+			<Grid container >
+				<Grid xs={12} sm={8} item >
+					<Container align="center" >
 						{this.state.searchSuccess ? (
 							<Table
 								wwncases={this.state.ww[0]}
@@ -145,16 +143,21 @@ class Coronanews extends React.Component {
 						)
 							: null
 						}
+							<Typography variant="body1" style={{ paddingTop: "15px", color: "black"}}>Based on Johns Hopkins University Center for Systems Science and Engineering.</Typography>
 					</Container>
-					<Typography variant="body1" style={{ paddingTop: "15px", color: indigoDark, paddingLeft: "25%" }}>Based on Johns Hopkins University Center for Systems Science and Engineering.</Typography>
+				
 				</Grid>
 				<Grid xs={12} sm={4} item>
-					<Typography variant="h5" style={{ color: darkBlue, padding: "50px 20px 10px 50px" }} align="center">Search Country.</Typography>
+				<Container align="center" >
+
+					<Typography variant="h5" style={{ color: darkBlue, padding: "20px" }} align="center">Search Country.</Typography>
 					<form align="center" noValidate autoComplete="off">
+					<div style={{padding: "10px"}}>
 						<TextField style={{ marginRight: "20px" }} id="standard-basic" label="Country" name="country" onChange={this.handleInputChange} />
 						<Button style={{ backgroundColor: darkBlue, color: "white", marginTop: "10px" }} onClick={() => this.searchCases()} variant="contained"><SearchIcon />Search</Button>
+						</div>
 						{this.state.countryDataLoaded === true ? (
-							<Container align="center" maxWidth={'sm'} style={{ paddingTop: "20px", color: indigoBlue }}>
+							<Container align="center" style={{ paddingTop: "10px", color: "black" }}>
 								<Typography align="left" variant="body1" >
 									{this.state.country} New Confirmed Cases: {this.state.countryData["NewConfirmed"]}
 								</Typography>
@@ -178,11 +181,14 @@ class Coronanews extends React.Component {
 							: null
 						}
 						{this.state.error === true ? (
-							<p>{this.state.errorMessage}</p>
+							<Typography variant="subtitle1" style={{ color: darkRed, marginLeft: "10%", marginRight: "10%" }}>
+							{this.state.errorMessage}
+						</Typography>
 						)
 							: null
 						}
 					</form>
+					</Container>
 				</Grid>
 			</Grid>
 		);

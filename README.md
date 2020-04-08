@@ -1,5 +1,6 @@
-## Using MetaWeather API & Alpha Vantage API 
+## Using MetaWeather API & Alpha Vantage API & COVID-19 API
 
+#### Dashboard used to check the weather in a given city, stock price search and coronavirus case updates by country.
 
 ## 🔑 How to Run the App
 
@@ -35,6 +36,17 @@ https://needtrip.herokuapp.com/
 - Material UI
 - React
 - Node
+- Moment.js
 - [MetaWeather API](https://www.metaweather.com/)
 - [Alpha Vantage](https://www.alphavantage.co/)
 - [COVID-19 API](https://covid19api.com/)
+
+
+## Credits
+
+- Icons
+    -  Icons made by [Pixel perfect]("https://www.flaticon.com/authors/pixel-perfect") from [www.flaticon.com]("https://www.flaticon.com/")
+    - Icons made by [Freepik]("https://www.flaticon.com/authors/freepik") from [www.flaticon.com]("https://www.flaticon.com/")
+    - Icons made by <a href="https://www.flaticon.com/authors/inipagistudio" title="inipagistudio">inipagistudio</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+
+    Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>

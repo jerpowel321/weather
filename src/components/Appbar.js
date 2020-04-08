@@ -29,14 +29,12 @@ export default class NavBar extends React.Component {
 			<AppBar id="nav" style={{ backgroundColor: darkIndigo }} position="sticky" >
 				<Toolbar>
 					<Grid container >
-						<Grid item xs={6}>
 							<Grid id="navigation" container justify="flex-start" style={{ fontWeight: "bold" }}>
 								<div id="name" >
 									<Typography variant="h6" style={{ paddingRight: "30px", fontFamily: "Lato, sans-serif", color: "#FFFFFF" }}>
-										Dashboard
+										Daily Weather, Stock and Coronavirus updates
               </Typography>
 								</div>
-							</Grid>
 						</Grid>
 					</Grid>
 				</Toolbar>

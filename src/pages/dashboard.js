@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import Grid from '@material-ui/core/Grid';
 import Form from '../components/Form';
 import Appbar from '../components/Appbar'
-import Container from '@material-ui/core/Container';
 import WeatherCard from '../components/Card';
 import Typography from '@material-ui/core/Typography';
 import lightBlue from '@material-ui/core/colors/lightBlue';
@@ -10,6 +9,9 @@ import Stock from '../components/Stock';
 import Coronanews from '../components/Coronanews';
 import Footer from '../components/Footer';
 import red from '@material-ui/core/colors/red';
+import CloudIcon from '@material-ui/icons/Cloud';
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
+import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 const darkBlue = lightBlue[900]
 const darkRed = red[900]
 
@@ -27,6 +29,7 @@ class Dashboard extends Component {
 			forecast: [],
 			search: false,
 			errorMessage: "Looks like we couldnt find that city. Try again.",
+			today: ''
 		};
 	}
 	callbackFunction = (childData) => {
@@ -103,12 +106,13 @@ class Dashboard extends Component {
 			<div id="dashboard">
 				<Appbar></Appbar>
 				<div id="content">
-					<Grid container>
-						<Grid item item xs={12} sm={8}>
+					<Grid container alignItems='stretch'>
+						<Grid item item xs={12} sm={8} style={{borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", margin: "20px 0px"}}>
+							<Typography align="center" variant="h5" style={{color: "white", backgroundColor: darkBlue, padding: "5px"}}><CloudIcon /> Weather Dashboard</Typography>
 							{this.state.forecast.length > 0 ?
 								<Grid container direction="row" >
-									<Grid item >
-										<Typography variant="h5" style={{ color: darkBlue }}>
+									<Grid item style={{padding: "10px"}}>
+										<Typography id="cityName" variant="h5" style={{ color: darkBlue }}>
 											{this.state.weatherData.title}
 										</Typography>
 										<Typography variant="body1">
@@ -116,7 +120,7 @@ class Dashboard extends Component {
 										</Typography>
 									</Grid>
 									{this.state.forecast.map(day => (
-										<Grid item align="center" key={day.applicable_date} style={{ paddingTop: "0px" }}>
+										<Grid item align="center" key={day.applicable_date} style={{ paddingTop: "10px" }}>
 											<WeatherCard
 												weather_state_name={day.weather_state_name}
 												weather_state_abbr={day.weather_state_abbr}
@@ -137,21 +141,25 @@ class Dashboard extends Component {
 								: null
 							}
 							<Grid container>
-								<Grid item>
+								<Grid item xs={12} sm={12}>
 									<Form parentCallback={this.callbackFunction} />
 									{this.state.error === true ? (
-										<Typography variant="subtitle1" style={{ color: darkRed, paddingTop: "30px" }}>
+										<Typography variant="subtitle1" align="center" style={{ color: darkRed, paddingBottom: "20px" }}>
 											{this.state.errorMessage}
 										</Typography>
-									) : null
+									) : <div style={{paddingBottom: "20px"}}></div>
 									}
 								</Grid>
 							</Grid>
 						</Grid>
-						<Grid item item xs={12} sm={4}>
+						<Grid item item xs={12} sm={3} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", margin: "20px 30px" }}>
+						<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}> <TrendingUpIcon style={{marginRight: "5px"}}/>Stock Dashboard</Typography>
 							<Stock/>
 						</Grid>
-						<Coronanews></Coronanews>
+						<Grid item item xs={12} sm={9} style={{borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", marginTop: "30px", paddingBottom: "30px"}}>
+						<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}><LocalHospitalIcon style={{marginRight: "5px"}}/>Coronavirus updates</Typography>
+						<Coronanews/>
+						</Grid>
 					</Grid>
 				</div>
 				<Footer></Footer>
