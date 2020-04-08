@@ -31,7 +31,7 @@ export default function DenseTable(props) {
   ];
   return (
     <TableContainer style={{width: "700px"}}component={Paper}>
-      <Table className={classes.table} size="small" aria-label="a dense table">
+      <Table className={classes.table} size="small" aria-label="a dense table" >
         <TableHead>
           <TableRow>
             <TableCell>Location</TableCell>

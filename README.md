@@ -2,6 +2,12 @@
 
 #### Dashboard used to check the weather in a given city, stock price search and coronavirus case updates by country.
 
+<img src="/dashboard.png" alt="Image of dashboard">
+<img src="https://media.giphy.com/media/jpuTiA9L2R0GX8JNte/giphy.gif" slt="Giphy of weather search functionality">
+<img src="https://media.giphy.com/media/KFVgvFRy2rtnsK8mnA/giphy.gif" alt="Giphy of stock price search functionality">
+
+<img src="https://media.giphy.com/media/JUjV37ksKIMl1sdLt5/giphy.gif" alt="Giphy of stock price search functionality">
+
 ## 🔑 How to Run the App
 
 #### Prerequisite
@@ -26,7 +32,7 @@ The versions of node and yarn you currently have installed should appear. If you
 8. Run the program by typing <b> yarn start </b>
 
 ## :rocket: Deployed Site: 
-https://needtrip.herokuapp.com/
+https://weatherstockcovid19.herokuapp.com/
 
 ## :wrench: Technologies
 
@@ -42,11 +48,9 @@ https://needtrip.herokuapp.com/
 - [COVID-19 API](https://covid19api.com/)
 
 
-## Credits
+## :sparkles: Credits
 
 - Icons
-    -  Icons made by [Pixel perfect]("https://www.flaticon.com/authors/pixel-perfect") from [www.flaticon.com]("https://www.flaticon.com/")
-    - Icons made by [Freepik]("https://www.flaticon.com/authors/freepik") from [www.flaticon.com]("https://www.flaticon.com/")
     - Icons made by <a href="https://www.flaticon.com/authors/inipagistudio" title="inipagistudio">inipagistudio</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
-
-    Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+    - Icons made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+   - <div>Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div>

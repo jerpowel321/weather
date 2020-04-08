@@ -107,11 +107,11 @@ class Dashboard extends Component {
 				<Appbar></Appbar>
 				<div id="content">
 					<Grid container alignItems='stretch'>
-						<Grid item item xs={12} sm={8} style={{borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", margin: "20px 0px"}}>
-							<Typography align="center" variant="h5" style={{color: "white", backgroundColor: darkBlue, padding: "5px"}}><CloudIcon /> Weather Dashboard</Typography>
+						<Grid item item xs={12} sm={8} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", margin: "20px 0px" }}>
+							<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}><CloudIcon /> Weather Dashboard</Typography>
 							{this.state.forecast.length > 0 ?
 								<Grid container direction="row" >
-									<Grid item style={{padding: "10px"}}>
+									<Grid item style={{ padding: "10px" }}>
 										<Typography id="cityName" variant="h5" style={{ color: darkBlue }}>
 											{this.state.weatherData.title}
 										</Typography>
@@ -147,18 +147,22 @@ class Dashboard extends Component {
 										<Typography variant="subtitle1" align="center" style={{ color: darkRed, paddingBottom: "20px" }}>
 											{this.state.errorMessage}
 										</Typography>
-									) : <div style={{paddingBottom: "20px"}}></div>
+									) : <div style={{ paddingBottom: "20px" }}></div>
 									}
 								</Grid>
 							</Grid>
 						</Grid>
-						<Grid item item xs={12} sm={3} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", margin: "20px 30px" }}>
-						<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}> <TrendingUpIcon style={{marginRight: "5px"}}/>Stock Dashboard</Typography>
-							<Stock/>
+						<Grid item xs={12} sm={3} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", margin: "20px 30px" }}>
+							<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}> <TrendingUpIcon style={{ marginRight: "5px" }} />Stock Dashboard</Typography>
+							<Stock />
 						</Grid>
-						<Grid item item xs={12} sm={9} style={{borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", marginTop: "30px", paddingBottom: "30px"}}>
-						<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}><LocalHospitalIcon style={{marginRight: "5px"}}/>Coronavirus updates</Typography>
-						<Coronanews/>
+						<Grid item xs={12} >
+							<Grid container justify='center'>
+								<Grid item xs={12} sm={9} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", marginTop: "30px", paddingBottom: "30px" }}>
+									<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}><LocalHospitalIcon style={{ marginRight: "5px"}} />Coronavirus updates</Typography>
+									<Coronanews />
+								</Grid>
+							</Grid>
 						</Grid>
 					</Grid>
 				</div>

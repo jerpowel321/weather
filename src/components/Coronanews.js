@@ -123,7 +123,7 @@ class Coronanews extends React.Component {
 		return (
 			<Grid container >
 				<Grid xs={12} sm={8} item >
-					<Container align="center" >
+					<Container align="center" style={{paddingTop: "20px"}}>
 						{this.state.searchSuccess ? (
 							<Table
 								wwncases={this.state.ww[0]}
