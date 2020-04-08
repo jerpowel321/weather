@@ -1,12 +1,37 @@
-## Using MetaWeather API & Alpha Vantage API & COVID-19 API
+# Dashboard
 
-#### Dashboard used to check the weather in a given city, stock price search and coronavirus case updates by country.
+## Get Weather, Stock Price and Covid-19 updates
+<p align="center">
+<img src="/public/dashboard.png" alt="Image of dashboard">
+</p>
 
-<img src="/dashboard.png" alt="Image of dashboard">
-<img src="https://media.giphy.com/media/jpuTiA9L2R0GX8JNte/giphy.gif" slt="Giphy of weather search functionality">
-<img src="https://media.giphy.com/media/KFVgvFRy2rtnsK8mnA/giphy.gif" alt="Giphy of stock price search functionality">
+### MetaWeather API
 
-<img src="https://media.giphy.com/media/JUjV37ksKIMl1sdLt5/giphy.gif" alt="Giphy of stock price search functionality">
+### Search Weather Forecast
+
+<p align="center">
+<img src="https://media.giphy.com/media/jpuTiA9L2R0GX8JNte/giphy.gif" slt="Giphy of weather search functionality" width="600">
+<p>
+
+### Alpha Vantage API 
+
+#### Search Stock Prices
+<p align="center">
+<img src="https://media.giphy.com/media/KFVgvFRy2rtnsK8mnA/giphy.gif" alt="Giphy of stock price search functionality" width="300">
+</p>
+
+### COVID-19 API
+#### Search new coronavirus cases, death toll and recovered cases
+
+<p align="center">
+<img src="https://media.giphy.com/media/JUjV37ksKIMl1sdLt5/giphy.gif" alt="Giphy of stock price search functionality" width="600">
+</p>
+
+
+
+
+
+
 
 ## 🔑 How to Run the App
 
