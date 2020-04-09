@@ -38,43 +38,43 @@ class Stock extends React.Component {
 	}
 
 
-// 	componentDidMount() {
-// 		let stocks = [ "NFLX", "FB", "TSLA", "MSFT"];
-// 		for (let i = 0; i < 4; i++) {
-// 			let stock = stocks[i]
-// 			fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + stock + "&interval=5min&apikey=" + stockKey)
-// 				.then(res =>
-// 					res.json()
-// 				)
-// 				.then(
-// 					(result) => {
-// 						let price = result["Time Series (5min)"]
-// 						let priceObj = price[Object.keys(price)[0]];
-// 						if (stock === "NFLX") {
-// 							this.setState({
-// 								nflx: priceObj,
-// 							})
-// 						}
-// 						else if (stock === "FB") {
-// 							this.setState({
-// 								fb: priceObj,
-// 							})
-// 						}
-// 						else if (stock === "TSLA") {
-// 							this.setState({
-// 								tsla: priceObj,
-// 							})
-// 						}
-// 						else {
-// 							this.setState({
-// 								msft: priceObj,
-// 								initialLoaded: true
-// 							})
-// 						}
-// 					}
-// 			)
-// 	}
-// }
+	componentDidMount() {
+		let stocks = [ "NFLX", "FB", "TSLA", "MSFT"];
+		for (let i = 0; i < 4; i++) {
+			let stock = stocks[i]
+			fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + stock + "&interval=5min&apikey=" + stockKey)
+				.then(res =>
+					res.json()
+				)
+				.then(
+					(result) => {
+						let price = result["Time Series (5min)"]
+						let priceObj = price[Object.keys(price)[0]];
+						if (stock === "NFLX") {
+							this.setState({
+								nflx: priceObj,
+							})
+						}
+						else if (stock === "FB") {
+							this.setState({
+								fb: priceObj,
+							})
+						}
+						else if (stock === "TSLA") {
+							this.setState({
+								tsla: priceObj,
+							})
+						}
+						else {
+							this.setState({
+								msft: priceObj,
+								initialLoaded: true
+							})
+						}
+					}
+			)
+	}
+}
 
 searchStock() {
 	let currentComponent = this;
@@ -94,16 +94,16 @@ searchStock() {
 				}
 				else {
 					let price = result["Time Series (5min)"]
-					let priceObj = price[Object.keys(price)[0]];
-					this.setState({
-						stockData: result,
-						priceData: priceObj,
-					}, () => {
+						let priceObj = price[Object.keys(price)[0]];
 						this.setState({
-							searchSuccess: true,
-							error: false
-						})
-					});
+							stockData: result,
+							priceData: priceObj,
+						}, () => {
+							this.setState({
+								searchSuccess: true,
+								error: false
+							})
+						});
 				}
 			}
 		)
@@ -119,13 +119,13 @@ render() {
 						<Button style={{ backgroundColor: darkBlue, color: "white", marginTop: "10px" }} onClick={() => this.searchStock()} variant="contained"><SearchIcon />Search</Button>
 					</div>
 					{this.state.searchSuccess ? (
-						<div style={{ paddingTop: "10px", paddingLeft: "20%", color: "black" }}>
-							<Typography align="left" variant="body1">Stock Symbol: {this.state.stockData["Meta Data"]["2. Symbol"]}</Typography>
-							<Typography align="left" variant="body1">Open: ${Number(this.state.priceData["1. open"]).toFixed(2)}</Typography>
-							<Typography align="left" variant="body1">High: ${Number(this.state.priceData["2. high"]).toFixed(2)}</Typography>
-							<Typography align="left" variant="body1">Low: ${Number(this.state.priceData["3. low"]).toFixed(2)}</Typography>
-							<Typography align="left" variant="body1">Close: ${Number(this.state.priceData["4. close"]).toFixed(2)}</Typography>
-							<Typography align="left" variant="body1">Volume: {this.state.priceData["5. volume"]} shares</Typography>
+						<div align="center" style={{ paddingTop: "10px", color: "#152238", fontWeight: "bold", width: "60%", margin: "auto"}}>
+							<Typography variant="h5" fontWeight="fontWeightBold" align="left" >{this.state.stockData["Meta Data"]["2. Symbol"]}</Typography>
+							<Typography variant="h6" fontWeight="fontWeightBold"  align="left" >Open: ${Number(this.state.priceData["1. open"]).toFixed(2)}</Typography>
+							<Typography variant="h6" fontWeight="fontWeightBold"  align="left" >High: ${Number(this.state.priceData["2. high"]).toFixed(2)}</Typography>
+							<Typography variant="h6" fontWeight="fontWeightBold"  align="left" >Low: ${Number(this.state.priceData["3. low"]).toFixed(2)}</Typography>
+							<Typography variant="h6" fontWeight="fontWeightBold"  align="left" >Close: ${Number(this.state.priceData["4. close"]).toFixed(2)}</Typography>
+							<Typography variant="h6" fontWeight="fontWeightBold"  align="left" >Volume: {this.state.priceData["5. volume"]} shares</Typography>
 						</div>
 					)
 						: null

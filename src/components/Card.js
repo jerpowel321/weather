@@ -4,23 +4,53 @@ import Typography from '@material-ui/core/Typography'
 import CardContent from '@material-ui/core/CardContent';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import moment from 'moment';
+import { withStyles } from "@material-ui/core/styles";
 
 const darkBlue = lightBlue[900]
+// const styles = theme => ({
+//   root: {
+// 		width: "150px", 
+// 		borderStyle: "none", 
+// 		boxShadow: "none", 
+// 		padding: "none", 
+// 		paddingTop: "0px", 
+// 		paddingBottom: "0px", 
+// 		margin:"0px 5px"
+// 	},
+// 	content: {
+// 		paddingTop: "0px", 
+// 		paddingBottom: "5px" 
+// 	},
+// 	date: {
+// 		color: darkBlue, 
+// 		padding: "2px" 
+// 	}
+// });
+
 
 function Checkday({value}){
+	// const { classes } = this.props;
 	let weekDayName = moment(value).format('dddd');
 	return (
-		<Typography align="center" variant="h6" style={{ color: darkBlue, padding: "2px" }}>
+		<Typography align="center" variant="h6" style={{color: darkBlue,	padding: "2px" }}>
 			{weekDayName}
 		</Typography>
 	)
 }
 
 const Cards = (props) => {
+	// const { classes } = this.props;
 	let website = "https://www.metaweather.com/static/img/weather/png/64/" + props.weather_state_abbr + ".png";
 	return (
-		<Card style={{ width: "150px", borderStyle: "none", boxShadow: "none", padding: "none", paddingTop: "0px", margin:"0px 5px"}}>
-			<CardContent style={{ paddingTop: "0px" }}>
+		<Card style={{		width: "150px", 
+		 		borderStyle: "none", 
+		 		boxShadow: "none", 
+		 		padding: "none", 
+		 		paddingTop: "0px", 
+		 		paddingBottom: "0px", 
+		 		margin:"0px 5px"}}>
+			<CardContent style={{	paddingTop: "0px", 
+ 		paddingBottom: "5px"}} >
 				<Checkday value={props.applicable_date}></Checkday>
 				<div align="center">
 					<img width="40px" src={website} alt={props.weather_state_abbr} />
@@ -48,4 +78,5 @@ const Cards = (props) => {
 	)
 }
 
-export default Cards
+// export default withStyles(styles, { withTheme: true })(Cards);
+export default (Cards);

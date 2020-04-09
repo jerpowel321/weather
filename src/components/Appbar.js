@@ -8,7 +8,7 @@ const styles = theme => ({
   root: {
 		backgroundColor: "#152238",
 		border: "none",
-		minHeight: "400px",
+		minHeight: "450px",
     width: "100%",
     borderBottomLeftRadius: "80% 80%",
     borderBottomRightRadius: "80% 80%",
@@ -29,9 +29,9 @@ class NavBar extends React.Component {
 		const { classes } = this.props;
 		return (
 			<AppBar className={classes.root} position="sticky" >
-				<Toolbar>
+				<Toolbar align="center" >
 								<Typography variant="h5" className={classes.h6}>
-									Daily <i className={classes.i} class="fas fa-cloud"></i> Weather, Stock and Coronavirus updates
+									Daily <i className={classes.i} className="fas fa-cloud"></i> Weather, Stock and Coronavirus updates
               </Typography>
 				</Toolbar>
 			</AppBar>
