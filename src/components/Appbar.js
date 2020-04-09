@@ -1,46 +1,42 @@
 import React from 'react';
 import { AppBar, Typography } from '@material-ui/core';
 import Toolbar from '@material-ui/core/Toolbar';
-import Grid from '@material-ui/core/Grid'
-import indigo from '@material-ui/core/colors/indigo';
-const darkIndigo = indigo[900]
+import { withStyles } from "@material-ui/core/styles";
 
-export default class NavBar extends React.Component {
-	constructor(props) {
-		super(props);
-		this.state = {
-			menuOpen: false
-		};
-	}
-	menuClick = () => {
-		if (this.state.menuOpen === true) {
-			this.setState({
-				menuOpen: false
-			})
-		}
-		else
-			this.setState({
-				menuOpen: true
-			})
 
+const styles = theme => ({
+  root: {
+		backgroundColor: "#152238",
+		border: "none",
+		minHeight: "400px",
+    width: "100%",
+    borderBottomLeftRadius: "80% 80%",
+    borderBottomRightRadius: "80% 80%",
+    background: "#232323",
+    boxShadow: "0px 4px 10px 0px rgba(0,0,0,0.36)"
+	},
+	h6: {
+		fontFamily: "Lato, sans-serif",
+		color: "#f2f9ff"
+	},
+	i: {
+		color: "#9fcffb"
 	}
+});
+
+class NavBar extends React.Component {
 	render() {
+		const { classes } = this.props;
 		return (
-			<AppBar id="nav" style={{ backgroundColor: darkIndigo }} position="sticky" >
+			<AppBar className={classes.root} position="sticky" >
 				<Toolbar>
-					<Grid container >
-							<Grid id="navigation" container justify="flex-start" style={{ fontWeight: "bold" }}>
-								<div id="name" >
-									<Typography variant="h6" style={{ paddingRight: "30px", fontFamily: "Lato, sans-serif", color: "#FFFFFF" }}>
-										Daily Weather, Stock and Coronavirus updates
+								<Typography variant="h5" className={classes.h6}>
+									Daily <i className={classes.i} class="fas fa-cloud"></i> Weather, Stock and Coronavirus updates
               </Typography>
-								</div>
-						</Grid>
-					</Grid>
 				</Toolbar>
 			</AppBar>
 		);
 	}
 };
 
-
+export default withStyles(styles, { withTheme: true })(NavBar);

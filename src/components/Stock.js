@@ -38,43 +38,43 @@ class Stock extends React.Component {
 	}
 
 
-	componentDidMount() {
-		let stocks = [ "NFLX", "FB", "TSLA", "MSFT"];
-		for (let i = 0; i < 4; i++) {
-			let stock = stocks[i]
-			fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + stock + "&interval=5min&apikey=" + stockKey)
-				.then(res =>
-					res.json()
-				)
-				.then(
-					(result) => {
-						let price = result["Time Series (5min)"]
-						let priceObj = price[Object.keys(price)[0]];
-						if (stock === "NFLX") {
-							this.setState({
-								nflx: priceObj,
-							})
-						}
-						else if (stock === "FB") {
-							this.setState({
-								fb: priceObj,
-							})
-						}
-						else if (stock === "TSLA") {
-							this.setState({
-								tsla: priceObj,
-							})
-						}
-						else {
-							this.setState({
-								msft: priceObj,
-								initialLoaded: true
-							})
-						}
-					}
-			)
-	}
-}
+// 	componentDidMount() {
+// 		let stocks = [ "NFLX", "FB", "TSLA", "MSFT"];
+// 		for (let i = 0; i < 4; i++) {
+// 			let stock = stocks[i]
+// 			fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + stock + "&interval=5min&apikey=" + stockKey)
+// 				.then(res =>
+// 					res.json()
+// 				)
+// 				.then(
+// 					(result) => {
+// 						let price = result["Time Series (5min)"]
+// 						let priceObj = price[Object.keys(price)[0]];
+// 						if (stock === "NFLX") {
+// 							this.setState({
+// 								nflx: priceObj,
+// 							})
+// 						}
+// 						else if (stock === "FB") {
+// 							this.setState({
+// 								fb: priceObj,
+// 							})
+// 						}
+// 						else if (stock === "TSLA") {
+// 							this.setState({
+// 								tsla: priceObj,
+// 							})
+// 						}
+// 						else {
+// 							this.setState({
+// 								msft: priceObj,
+// 								initialLoaded: true
+// 							})
+// 						}
+// 					}
+// 			)
+// 	}
+// }
 
 searchStock() {
 	let currentComponent = this;

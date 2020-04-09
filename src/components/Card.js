@@ -19,7 +19,7 @@ function Checkday({value}){
 const Cards = (props) => {
 	let website = "https://www.metaweather.com/static/img/weather/png/64/" + props.weather_state_abbr + ".png";
 	return (
-		<Card style={{ width: "150px", borderStyle: "none", boxShadow: "none", padding: "none", paddingTop: "0px" }}>
+		<Card style={{ width: "150px", borderStyle: "none", boxShadow: "none", padding: "none", paddingTop: "0px", margin:"0px 5px"}}>
 			<CardContent style={{ paddingTop: "0px" }}>
 				<Checkday value={props.applicable_date}></Checkday>
 				<div align="center">

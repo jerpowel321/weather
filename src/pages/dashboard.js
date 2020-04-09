@@ -86,31 +86,32 @@ class Dashboard extends Component {
 				)
 		}
 	}
-	componentDidMount() {
-		fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/2487956")
-			.then(res =>
-				res.json()
-			).then(
-				(res) => {
-					this.setState({
-						weatherData: res,
-						forecast: res.consolidated_weather,
-						search: false
-					});
-				}
-			)
-	}
+	// componentDidMount() {
+	// 	fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/2487956")
+	// 		.then(res =>
+	// 			res.json()
+	// 		).then(
+	// 			(res) => {
+	// 				this.setState({
+	// 					weatherData: res,
+	// 					forecast: res.consolidated_weather,
+	// 					search: false
+	// 				});
+	// 			}
+	// 		)
+	// }
 
 	render() {
 		return (
-			<div id="dashboard">
-				<Appbar></Appbar>
-				<div id="content">
-					<Grid container alignItems='stretch'>
-						<Grid item item xs={12} sm={8} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", margin: "20px 0px" }}>
-							<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}><CloudIcon /> Weather Dashboard</Typography>
+			<div id="dashboard" className="gradient">
+				<Appbar/>
+
+				
+				<Grid container justify='center' style={{zIndex: "2000"}} position="sticky">
+				<Grid item xs={12} sm={7} style={{ borderColor: "#f8fcfd", borderStyle: "solid", borderWidth: "medium", margin: "20px 0px" }}>
+							<Typography align="center" variant="h5" style={{ color: darkBlue, backgroundColor: "#f8fcfd", padding: "5px" }}><CloudIcon /> Weather Dashboard</Typography>
 							{this.state.forecast.length > 0 ?
-								<Grid container direction="row" >
+								<Grid container direction="row" id="sky">
 									<Grid item style={{ padding: "10px" }}>
 										<Typography id="cityName" variant="h5" style={{ color: darkBlue }}>
 											{this.state.weatherData.title}
@@ -152,12 +153,17 @@ class Dashboard extends Component {
 								</Grid>
 							</Grid>
 						</Grid>
+						</Grid>
+
+				<div id="content" >
+					<Grid container alignItems='stretch' >
+
 						<Grid item xs={12} sm={3} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", margin: "20px 30px" }}>
 							<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}> <TrendingUpIcon style={{ marginRight: "5px" }} />Stock Dashboard</Typography>
 							<Stock />
 						</Grid>
 						<Grid item xs={12} >
-							<Grid container justify='center'>
+							<Grid container justify='center' >
 								<Grid item xs={12} sm={9} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", marginTop: "30px", paddingBottom: "30px" }}>
 									<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}><LocalHospitalIcon style={{ marginRight: "5px"}} />Coronavirus updates</Typography>
 									<Coronanews />

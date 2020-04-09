@@ -8,7 +8,7 @@ let darkgrey = grey[900]
 const useStyles = makeStyles({
   root: {
     width: "100%",
-    backgroundColor: darkgrey,
+    backgroundColor: '#74AD7F0',
     height: "100px",
     marginTop: "-100px",
   },
