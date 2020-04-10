@@ -111,7 +111,7 @@ class Dashboard extends Component {
 				<Appbar />
 				{/* backgroundColor: "#f8fcfd" */}
 				<Grid id="weatherContainer" container justify='center' style={{ margin: "20px 0px", top: "0px", zIndex: "5000" }}>
-					<Grid item xs={12} sm={8} justify='center' >
+					<Grid item xs={12} sm={8} >
 						<Typography align="center" variant="h5" style={{ color: '#f8fcfd', padding: "5px", zIndex: "5000", display: "inline-Block" }}><i id="cloud" className="fas fa-cloud"></i><span id="weatherName">Weather</span><span id="dashboardName" >Dashboard</span></Typography>
 						{this.state.forecast.length > 0 ?
 							<Grid container id="weatherDataContainer" style={{ zIndex: "5000", padding:"20px 20px 20px 20px"}}>
@@ -145,7 +145,7 @@ class Dashboard extends Component {
 							: null
 						}
 					</Grid>
-					<Grid item xs={8} sm={3}>
+					<Grid item xs={12} sm={3}>
 						<Form parentCallback={this.callbackFunction} />
 						{this.state.error === true ? (
 							<Typography variant="subtitle1" align="center" style={{ color: darkRed, paddingBottom: "20px" }}>

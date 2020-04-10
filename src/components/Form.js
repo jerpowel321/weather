@@ -14,17 +14,17 @@ const styles = theme => ({
 		margin: "15px"
 	},
 	h5: {
-		color: 'white',
+		color: '#f8fcfd',
 	},
 	form: {
 		padding: "20px",
 	},
 	textfield: {
 		marginRight: "20px",
-		color: "white",
+		color: "#f8fcfd",
 	},
 	multilineColor: {
-		color: 'white',
+		color: '#f8fcfd',
 	},
 });
 
@@ -74,7 +74,7 @@ class Form extends React.Component {
 						}}
 						label="City" name="city" onChange={this.handleInputChange}
 					/>
-					<Button style={{ backgroundColor: darkBlue, color: "white", marginTop: "10px" }} onClick={this.searchClick} variant="contained"><SearchIcon />Search</Button>
+					<Button style={{ backgroundColor: darkBlue, color: "#f8fcfd", marginTop: "10px" }} onClick={this.searchClick} variant="contained"><SearchIcon />Search</Button>
 				</form>
 			</div>
 		);

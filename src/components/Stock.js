@@ -39,43 +39,43 @@ class Stock extends React.Component {
 	}
 
 
-// 	componentDidMount() {
-// 		let stocks = [ "NFLX", "FB", "TSLA", "MSFT"];
-// 		for (let i = 0; i < 4; i++) {
-// 			let stock = stocks[i]
-// 			fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + stock + "&interval=5min&apikey=" + stockKey)
-// 				.then(res =>
-// 					res.json()
-// 				)
-// 				.then(
-// 					(result) => {
-// 						let price = result["Time Series (5min)"]
-// 						let priceObj = price[Object.keys(price)[0]];
-// 						if (stock === "NFLX") {
-// 							this.setState({
-// 								nflx: priceObj,
-// 							})
-// 						}
-// 						else if (stock === "FB") {
-// 							this.setState({
-// 								fb: priceObj,
-// 							})
-// 						}
-// 						else if (stock === "TSLA") {
-// 							this.setState({
-// 								tsla: priceObj,
-// 							})
-// 						}
-// 						else {
-// 							this.setState({
-// 								msft: priceObj,
-// 								initialLoaded: true
-// 							})
-// 						}
-// 					}
-// 			)
-// 	}
-// }
+	componentDidMount() {
+		let stocks = [ "NFLX", "FB", "TSLA", "MSFT"];
+		for (let i = 0; i < 4; i++) {
+			let stock = stocks[i]
+			fetch("https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=" + stock + "&interval=5min&apikey=" + stockKey)
+				.then(res =>
+					res.json()
+				)
+				.then(
+					(result) => {
+						let price = result["Time Series (5min)"]
+						let priceObj = price[Object.keys(price)[0]];
+						if (stock === "NFLX") {
+							this.setState({
+								nflx: priceObj,
+							})
+						}
+						else if (stock === "FB") {
+							this.setState({
+								fb: priceObj,
+							})
+						}
+						else if (stock === "TSLA") {
+							this.setState({
+								tsla: priceObj,
+							})
+						}
+						else {
+							this.setState({
+								msft: priceObj,
+								initialLoaded: true
+							})
+						}
+					}
+			)
+	}
+}
 
 searchStock() {
 	let currentComponent = this;
@@ -111,14 +111,14 @@ searchStock() {
 }
 render() {
 	return (
-		<Grid item xs={12} sm={3} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", margin: "30px 10px 0px 10px", backgroundColor: "white" }}>
-		<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}> <TrendingUpIcon style={{ marginRight: "5px" }} />Stock Dashboard</Typography>
+		<Grid item xs={12} sm={3} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", margin: "30px 10px 0px 10px", backgroundColor: "#f8fcfd" }}>
+		<Typography align="center" variant="h5" style={{ color: "#f8fcfd", backgroundColor: darkBlue, padding: "5px" }}> <TrendingUpIcon style={{ marginRight: "5px" }} />Stock Dashboard</Typography>
 			<div>
 				<Typography variant="h5" align="center" style={{ color: darkBlue, paddingTop: "10px" }}><img width="45px" src="/stock-market.png" alt="Stock Market Icon" style={{paddingRight: "5px"}}></img>Enter stock symbol.</Typography>
 				<form align="center" noValidate autoComplete="off" >
 					<div style={{ padding: "10px" }}>
 						<TextField style={{ marginRight: "20px" }} id="standard-basic" label="Stock Symbol" name="stock" onChange={this.handleInputChange} />
-						<Button style={{ backgroundColor: darkBlue, color: "white", marginTop: "10px" }} onClick={() => this.searchStock()} variant="contained"><SearchIcon />Search</Button>
+						<Button style={{ backgroundColor: darkBlue, color: "#f8fcfd", marginTop: "10px" }} onClick={() => this.searchStock()} variant="contained"><SearchIcon />Search</Button>
 					</div>
 					{this.state.searchSuccess ? (
 						<div align="center" style={{ paddingTop: "10px", paddingBottom: "10px", color: "#152238", fontWeight: "bold", width: "60%", margin: "auto"}}>
