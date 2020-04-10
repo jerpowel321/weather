@@ -6,6 +6,7 @@ import lightBlue from '@material-ui/core/colors/lightBlue';
 import SearchIcon from '@material-ui/icons/Search';
 import red from '@material-ui/core/colors/red';
 import Grid from '@material-ui/core/Grid'
+import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 const darkRed = red[900]
 const darkBlue = lightBlue[900]
 const stockKey = process.env.REACT_APP_STOCK_KEY;
@@ -110,16 +111,17 @@ searchStock() {
 }
 render() {
 	return (
-		<Container>
+		<Grid item xs={12} sm={3} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", margin: "30px 10px 0px 10px", backgroundColor: "white" }}>
+		<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}> <TrendingUpIcon style={{ marginRight: "5px" }} />Stock Dashboard</Typography>
 			<div>
-				<Typography variant="h5" align="center" style={{ color: darkBlue, paddingTop: "10px" }}>Enter stock symbol.</Typography>
+				<Typography variant="h5" align="center" style={{ color: darkBlue, paddingTop: "10px" }}><img width="45px" src="/stock-market.png" alt="Stock Market Icon"></img>Enter stock symbol.</Typography>
 				<form align="center" noValidate autoComplete="off" >
 					<div style={{ padding: "10px" }}>
 						<TextField style={{ marginRight: "20px" }} id="standard-basic" label="Stock Symbol" name="stock" onChange={this.handleInputChange} />
 						<Button style={{ backgroundColor: darkBlue, color: "white", marginTop: "10px" }} onClick={() => this.searchStock()} variant="contained"><SearchIcon />Search</Button>
 					</div>
 					{this.state.searchSuccess ? (
-						<div align="center" style={{ paddingTop: "10px", color: "#152238", fontWeight: "bold", width: "60%", margin: "auto"}}>
+						<div align="center" style={{ paddingTop: "10px", paddingBottom: "10px", color: "#152238", fontWeight: "bold", width: "60%", margin: "auto"}}>
 							<Typography variant="h5" fontWeight="fontWeightBold" align="left" >{this.state.stockData["Meta Data"]["2. Symbol"]}</Typography>
 							<Typography variant="h6" fontWeight="fontWeightBold"  align="left" >Open: ${Number(this.state.priceData["1. open"]).toFixed(2)}</Typography>
 							<Typography variant="h6" fontWeight="fontWeightBold"  align="left" >High: ${Number(this.state.priceData["2. high"]).toFixed(2)}</Typography>
@@ -163,7 +165,7 @@ render() {
 				: null
 			}
 
-		</Container>
+		</Grid>
 	);
 }
 }

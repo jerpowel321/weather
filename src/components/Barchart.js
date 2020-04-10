@@ -21,18 +21,17 @@ const initialState = {
 		legend: {
 				fontColor: "white"
 		},
-		// scales: { 
-		// 		yAxes: [{
-		// 				ticks: {
-		// 						fontColor: "white",
-		// 						stepSize: 1,
-		// 						beginAtZero: true
-		// 				}
-		// 		}]
-		// }
 }
 };
 
+// const data = [
+// 	['🌐Worldwide', props.wwncases, props.wwcases, props.wwndeaths, props.wwdeaths, props.wwnrecovered, props.wwrecovered],
+// 	['🇺🇸United States', data[0]["NewConfirmed"], data[0]["TotalConfirmed"], data[0]["NewDeaths"],data[0]["TotalDeaths"], data[0]["NewRecovered"], data[0]["TotalRecovered"]],
+// 	['🇪🇸Spain', data[1]["NewConfirmed"], data[1]["TotalConfirmed"], data[1]["NewDeaths"],data[1]["TotalDeaths"], data[1]["NewRecovered"], data[1]["TotalRecovered"]],
+// 	['🇮🇹Italy', data[2]["NewConfirmed"], data[2]["TotalConfirmed"], data[2]["NewDeaths"],data[2]["TotalDeaths"], data[2]["NewRecovered"], data[2]["TotalRecovered"]],
+// 	['🇩🇪Germany', data[3]["NewConfirmed"], data[3]["TotalConfirmed"], data[3]["NewDeaths"],data[3]["TotalDeaths"], data[3]["NewRecovered"], data[3]["TotalRecovered"]],
+// 	['🇨🇳China', data[4]["NewConfirmed"], data[4]["TotalConfirmed"], data[4]["NewDeaths"],data[4]["TotalDeaths"], data[4]["NewRecovered"], data[4]["TotalRecovered"]]
+// ];
 
 class Graph extends React.Component {
 
@@ -74,7 +73,7 @@ class Graph extends React.Component {
 	}
 	render() {
 		return (
-			<div style={{ maxWidth: "700px" }}>
+			<div style={{ maxWidth: "700px", padding: "30px" }}>
 				<Bar data={this.state} />
 			</div>
 		);
@@ -84,16 +83,3 @@ class Graph extends React.Component {
 
 
 export default (Graph);
-
-// export default React.createClass({
-//   displayName: 'Crazy Random Graph',
-
-//   render() {
-//     return (
-//       <div>
-//         <h2>You can even make crazy graphs like this!</h2>
-//  		<Graph />
-//       </div>
-//     );
-//   }
-// });

@@ -3,7 +3,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import { grey } from '@material-ui/core/colors';
 let white = grey[100]
-let darkgrey = grey[900]
 
 const useStyles = makeStyles({
   root: {

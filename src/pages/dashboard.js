@@ -9,10 +9,8 @@ import Stock from '../components/Stock';
 import Coronanews from '../components/Coronanews';
 import Footer from '../components/Footer';
 import red from '@material-ui/core/colors/red';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
 import LocalHospitalIcon from '@material-ui/icons/LocalHospital';
 import { withStyles } from "@material-ui/core/styles";
-import Barchart from "../components/Barchart"
 const darkBlue = lightBlue[900]
 const darkRed = red[900]
 
@@ -92,42 +90,42 @@ class Dashboard extends Component {
 				)
 		}
 	}
-	// componentDidMount() {
-	// 	fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/2487956")
-	// 		.then(res =>
-	// 			res.json()
-	// 		).then(
-	// 			(res) => {
-	// 				this.setState({
-	// 					weatherData: res,
-	// 					forecast: res.consolidated_weather,
-	// 					search: false
-	// 				});
-	// 			}
-	// 		)
-	// }
+	componentDidMount() {
+		fetch("https://cors-anywhere.herokuapp.com/https://www.metaweather.com/api/location/2487956")
+			.then(res =>
+				res.json()
+			).then(
+				(res) => {
+					this.setState({
+						weatherData: res,
+						forecast: res.consolidated_weather,
+						search: false
+					});
+				}
+			)
+	}
 
 	render() {
 		// const { classes } = this.props;
 		return (
-			<div id="dashboard" className="gradient whitebackground">
+			<div id="dashboard" className="gradient">
 				<Appbar />
 				{/* backgroundColor: "#f8fcfd" */}
-				<Grid container justify='center' style={{ margin: "20px 0px", position: "fixed", top: "20px", zIndex: "5000" }}>
+				<Grid container justify='center' style={{ margin: "20px 0px", position: "fixed", top: "0px", zIndex: "5000" }}>
 					<Grid item xs={12} sm={8} align="center" >
-						<Typography align="center" variant="h5" style={{ color: '#f8fcfd', padding: "5px", zIndex: "5000", display: "inline-Block" }}><i className="fas fa-cloud" style={{fontSize: "85px", color: "#f8fcfd"}}></i><span style={{position: "relative", left: "-95px", top: "-7px", color: "#29B6F6",fontWeight: "bold" }}>Weather</span><span style={{position: "relative", left: "-75px", top: "-7px", color: "#f8fcfd"}}>Dashboard</span></Typography>
+						<Typography align="center" variant="h5" style={{ color: '#f8fcfd', padding: "5px", zIndex: "5000", display: "inline-Block" }}><i id="cloud" className="fas fa-cloud" style={{fontSize: "85px", color: "#f8fcfd"}}></i><span style={{position: "relative", left: "-95px", top: "-7px", color: "#29B6F6",fontWeight: "bold" }}>Weather</span><span id="dashboardName" style={{position: "relative", left: "-75px", top: "-7px", color: "#f8fcfd"}}>Dashboard</span></Typography>
 						{this.state.forecast.length > 0 ?
-							<Grid container style={{ zIndex: "5000" }}>
-								<Grid item style={{ padding: "5px" }}>
+							<Grid container justify="center" style={{ zIndex: "5000", padding:"20px 0px 20px 0px"}}>
+								<Grid item style={{ padding: "5px", minWidth: "145px" }}>
 									<Typography id="cityName" variant="h5" style={{ color: "#29B6F6" }}>
 										{this.state.weatherData.title}
 									</Typography>
-									<Typography variant="body1" style={{color: "#f8fcfd"}}>
+									<Typography id="stateName" variant="body1" style={{color: "#f8fcfd"}}>
 										{this.state.weatherData.parent.title}
 									</Typography>
 								</Grid>
 								{this.state.forecast.map(day => (
-									<Grid item align="center" key={day.applicable_date} style={{ padding: "5px" }}>
+									<Grid item align="center" key={day.applicable_date} style={{ padding: "5px"}}>
 										<WeatherCard
 											weather_state_name={day.weather_state_name}
 											weather_state_abbr={day.weather_state_abbr}
@@ -162,25 +160,13 @@ class Dashboard extends Component {
 				</Grid>
 
 				<div id="content" >
-					<Grid container alignItems='stretch' >
-						<Grid item xs={12} >
-							<Grid container justify='center' >
-								<Grid item xs={12} sm={8} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", marginTop: "30px", paddingBottom: "30px" }}>
+					<Grid container justify="space-around" alignItems='stretch' spacing={1}>
+								<Grid item xs={12} sm={8} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", margin: "30px 10px 0px 10px" }}>
 									<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}><LocalHospitalIcon style={{ marginRight: "5px" }} />Coronavirus updates</Typography>
 									<Coronanews />
-									<Barchart></Barchart>
 								</Grid>
-								<Grid item xs={12} sm={3} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", margin: "20px 30px", backgroundColor: "white" }}>
-							<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}> <TrendingUpIcon style={{ marginRight: "5px" }} />Stock Dashboard</Typography>
-							<Stock />
-						</Grid>
-							
-							</Grid>
-							
-						</Grid>
+							<Stock />					
 					</Grid>
-
-					
 				</div>
 				<Footer></Footer>
 

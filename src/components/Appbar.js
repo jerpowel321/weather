@@ -28,11 +28,11 @@ class NavBar extends React.Component {
 	render() {
 		const { classes } = this.props;
 		return (
-			<AppBar className={classes.root} position="sticky" >
+			<AppBar id="nav" className={classes.root} position="sticky" >
 				<Toolbar align="center" >
-								<Typography variant="h5" className={classes.h6}>
+								{/* <Typography variant="h5" className={classes.h6}>
 									Daily <i className={classes.i} className="fas fa-cloud"></i> Weather, Stock and Coronavirus updates
-              </Typography>
+              </Typography> */}
 				</Toolbar>
 			</AppBar>
 		);

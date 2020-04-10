@@ -5,11 +5,12 @@ import Typography from '@material-ui/core/Typography';
 import lightBlue from '@material-ui/core/colors/lightBlue';
 import SearchIcon from '@material-ui/icons/Search';
 import { withStyles } from "@material-ui/core/styles";
+
 const darkBlue = lightBlue[900]
 
 const styles = theme => ({
-	root:{
-		paddingTop: "35px", 
+	root: {
+		paddingTop: "35px",
 		margin: "15px"
 	},
 	h5: {
@@ -18,37 +19,15 @@ const styles = theme => ({
 		position: "fixed",
 	},
 	form: {
-		padding: "30px",
+		padding: "50px",
 	},
 	textfield: {
 		marginRight: "20px",
 		color: "white",
 	},
-	button: {
-		backgroundColor: darkBlue,
-		color: "white",
-		marginTop: "10px"
+	multilineColor: {
+		color: 'white',
 	},
-// 	input: {
-// 	},
-// 	multilineColor:{
-// 		color:'white',
-// 		floatingLabelFocusStyle: {
-// 			color: "white"
-// 		},
-// 		MuiInputLabelRoot: {
-// 			color: "white"
-// 		}
-// },
-cssLabel: {
-	color : 'white',
-	borderColor: "white"
-},
-cssFocused: {
-	color: 'white',
-	borderColor: "white"
-},
-
 });
 
 
@@ -82,28 +61,22 @@ class Form extends React.Component {
 		const { classes } = this.props;
 		return (
 			<div className={classes.root} >
-				<i display="inline" style={{fontSize:"30px", paddingRight: "10px", color: "#29B6F6"}} className="fas fa-city"></i>
-				<Typography display="inline" variant="h5" align="center" className={classes.h5}>
-					Provide the city you would like to search.
+				<div style={{ paddingBottom: "20px" }}>
+					<Typography variant="h5" align="center" className={classes.h5}>
+						<i style={{ fontSize: "30px", paddingRight: "10px", color: "#29B6F6" }} className="fas fa-city"></i>	Provide the city you would like to search.
 					</Typography>
+				</div>
 				<form align="center" noValidate autoComplete="off" className={classes.form}>
 					<TextField className={classes.textfield}
-					          InputLabelProps={{
-											classes: {
-												root: classes.cssLabel,
-												focused: classes.cssFocused,
-											},
-										}}
-										InputProps={{
-											classes: {
-												root: classes.cssLabel,
-												focused: classes.cssFocused,
-											},
-										}}
-						InputProps={{className: classes.multilineColor}}
-						label="City" name="city" onChange={this.handleInputChange} 
-						/>
-					<Button className={classes.button} onClick={this.searchClick} variant="contained"><SearchIcon />Search</Button>
+						InputLabelProps={{
+							className: "label"
+						}}
+						InputProps={{
+							className: classes.multilineColor,
+						}}
+						label="City" name="city" onChange={this.handleInputChange}
+					/>
+					<Button style={{ backgroundColor: darkBlue, color: "white", marginTop: "10px" }} onClick={this.searchClick} variant="contained"><SearchIcon />Search</Button>
 				</form>
 			</div>
 		);
