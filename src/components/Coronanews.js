@@ -181,7 +181,7 @@ class Coronanews extends React.Component {
 					</Grid>
 					<Grid xs={12} sm={4} item>
 						<Container align="center" >
-							<Typography variant="h5" style={{ color: darkBlue, padding: "20px" }} align="center"><img width="45px" src="/pandemic.png" alt="World Pandemic"></img>Search Country.</Typography>
+							<Typography variant="h5" style={{ color: darkBlue, padding: "20px" }} align="center"><img width="45px" src="/pandemic.png" alt="World Pandemic" style={{paddingRight: "5px"}}></img>Search Country.</Typography>
 							<form align="center" noValidate autoComplete="off" style={{paddingBottom: "20px"}}>
 								<div style={{ padding: "10px" }}>
 									<TextField style={{ marginRight: "20px" }} id="standard-basic" label="Country" name="country" onChange={this.handleInputChange} />

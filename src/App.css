@@ -44,6 +44,9 @@
   left: -75px;
   top: -7px;
 }
+#weatherDataContainer{
+justify-content: flex-end;
+}
 @media only screen and (max-width: 600px) {
   html {
     background-color: #152238;
@@ -100,5 +103,8 @@
     position: relative;
     top: -25px;
     left: 100px;
+  }
+  #weatherDataContainer{
+    justify-content: flex-start 
   }
 }

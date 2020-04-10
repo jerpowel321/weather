@@ -114,7 +114,7 @@ render() {
 		<Grid item xs={12} sm={3} style={{ borderColor: darkBlue, borderStyle: "solid", borderWidth: "medium", margin: "30px 10px 0px 10px", backgroundColor: "white" }}>
 		<Typography align="center" variant="h5" style={{ color: "white", backgroundColor: darkBlue, padding: "5px" }}> <TrendingUpIcon style={{ marginRight: "5px" }} />Stock Dashboard</Typography>
 			<div>
-				<Typography variant="h5" align="center" style={{ color: darkBlue, paddingTop: "10px" }}><img width="45px" src="/stock-market.png" alt="Stock Market Icon"></img>Enter stock symbol.</Typography>
+				<Typography variant="h5" align="center" style={{ color: darkBlue, paddingTop: "10px" }}><img width="45px" src="/stock-market.png" alt="Stock Market Icon" style={{paddingRight: "5px"}}></img>Enter stock symbol.</Typography>
 				<form align="center" noValidate autoComplete="off" >
 					<div style={{ padding: "10px" }}>
 						<TextField style={{ marginRight: "20px" }} id="standard-basic" label="Stock Symbol" name="stock" onChange={this.handleInputChange} />
