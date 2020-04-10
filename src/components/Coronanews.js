@@ -49,64 +49,64 @@ class Coronanews extends React.Component {
 		};
 	}
 
-	componentDidMount() {
-		fetch("https://api.covid19api.com/summary")
-			.then(res =>
-				res.json()
-			)
-			.then(
-				(result) => {
-					this.setState({
-						data: result,
-						ww: [result["Global"]["NewConfirmed"], result["Global"]["TotalConfirmed"], result["Global"]["NewDeaths"], result["Global"]["TotalDeaths"], result["Global"]["NewRecovered"], result["Global"]["TotalRecovered"]]
-					}, () => {
-						if (this.state.ww.length > 0) {
-							for (let j = 0; j < 5; j++) {
-								for (let i = 0; i < this.state.data["Countries"].length; i++) {
-									if (this.state.data["Countries"][i]["Country"] === "China" && j===4) {
-										let countryInfo = this.state.data["Countries"][i];
-										this.setState({
-											error: false,
-											china: countryInfo,
-											searchSuccess: true,
-										})
-									}
-									if (this.state.data["Countries"][i]["Country"] === "United States of America") {
-										let countryInfo = this.state.data["Countries"][i];
-										this.setState({
-											error: false,
-											usa: countryInfo,
-										})
-									}
-									if (this.state.data["Countries"][i]["Country"] === "Spain") {
-										let countryInfo = this.state.data["Countries"][i];
-										this.setState({
-											error: false,
-											spain: countryInfo,
-										})
-									}
-									if (this.state.data["Countries"][i]["Country"] === "Italy") {
-										let countryInfo = this.state.data["Countries"][i];
-										this.setState({
-											error: false,
-											italy: countryInfo,
-										})
-									}
-									if (this.state.data["Countries"][i]["Country"] === "Germany") {
-										let countryInfo = this.state.data["Countries"][i];
-										this.setState({
-											error: false,
-											germany: countryInfo,
-										})
-									}
-								}
-							} 
-						}
-					}
-					);
-				}
-			)
-	}
+	// componentDidMount() {
+	// 	fetch("https://api.covid19api.com/summary")
+	// 		.then(res =>
+	// 			res.json()
+	// 		)
+	// 		.then(
+	// 			(result) => {
+	// 				this.setState({
+	// 					data: result,
+	// 					ww: [result["Global"]["NewConfirmed"], result["Global"]["TotalConfirmed"], result["Global"]["NewDeaths"], result["Global"]["TotalDeaths"], result["Global"]["NewRecovered"], result["Global"]["TotalRecovered"]]
+	// 				}, () => {
+	// 					if (this.state.ww.length > 0) {
+	// 						for (let j = 0; j < 5; j++) {
+	// 							for (let i = 0; i < this.state.data["Countries"].length; i++) {
+	// 								if (this.state.data["Countries"][i]["Country"] === "China" && j===4) {
+	// 									let countryInfo = this.state.data["Countries"][i];
+	// 									this.setState({
+	// 										error: false,
+	// 										china: countryInfo,
+	// 										searchSuccess: true,
+	// 									})
+	// 								}
+	// 								if (this.state.data["Countries"][i]["Country"] === "United States of America") {
+	// 									let countryInfo = this.state.data["Countries"][i];
+	// 									this.setState({
+	// 										error: false,
+	// 										usa: countryInfo,
+	// 									})
+	// 								}
+	// 								if (this.state.data["Countries"][i]["Country"] === "Spain") {
+	// 									let countryInfo = this.state.data["Countries"][i];
+	// 									this.setState({
+	// 										error: false,
+	// 										spain: countryInfo,
+	// 									})
+	// 								}
+	// 								if (this.state.data["Countries"][i]["Country"] === "Italy") {
+	// 									let countryInfo = this.state.data["Countries"][i];
+	// 									this.setState({
+	// 										error: false,
+	// 										italy: countryInfo,
+	// 									})
+	// 								}
+	// 								if (this.state.data["Countries"][i]["Country"] === "Germany") {
+	// 									let countryInfo = this.state.data["Countries"][i];
+	// 									this.setState({
+	// 										error: false,
+	// 										germany: countryInfo,
+	// 									})
+	// 								}
+	// 							}
+	// 						} 
+	// 					}
+	// 				}
+	// 				);
+	// 			}
+	// 		)
+	// }
 
 	handleInputChange = (event) => {
 		let { name, value } = event.target;

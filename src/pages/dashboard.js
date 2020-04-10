@@ -111,11 +111,11 @@ class Dashboard extends Component {
 				<Appbar />
 				{/* backgroundColor: "#f8fcfd" */}
 				<Grid id="weatherContainer" container justify='center' style={{ margin: "20px 0px", top: "0px", zIndex: "5000" }}>
-					<Grid item xs={12} sm={8}  >
+					<Grid item xs={12} sm={8} justify='center' >
 						<Typography align="center" variant="h5" style={{ color: '#f8fcfd', padding: "5px", zIndex: "5000", display: "inline-Block" }}><i id="cloud" className="fas fa-cloud"></i><span id="weatherName">Weather</span><span id="dashboardName" >Dashboard</span></Typography>
 						{this.state.forecast.length > 0 ?
 							<Grid container id="weatherDataContainer" style={{ zIndex: "5000", padding:"20px 20px 20px 20px"}}>
-								<Grid item xs={12} sm={3} style={{ padding: "10px", minWidth: "145px" }}>
+								<Grid item xs={12} sm={2} style={{ padding: "10px", minWidth: "145px" }}>
 									<Typography id="cityName" variant="h5" style={{ color: "#29B6F6" }}>
 										{this.state.weatherData.title}
 									</Typography>
