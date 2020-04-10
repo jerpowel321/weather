@@ -3,26 +3,29 @@
 ## Get Weather, Stock Price and Covid-19 updates
 ![dashboard](/public/dashboard.png "Image of dashboard")
 
+#### Mobile View
+![dashboard](/public/dashboardMobile.png "Image of dashboard Mobile View")
+
 ### MetaWeather API
 
 ## Search Weather Forecast
 
 <p align="center">
-<img src="https://media.giphy.com/media/jpuTiA9L2R0GX8JNte/giphy.gif" slt="Giphy of weather search functionality" width="700">
+<img src="https://media.giphy.com/media/H1wB0FT4e5FTCwiWBX/giphy.gif" slt="Giphy of weather search functionality" width="700">
 <p>
 
 ### Alpha Vantage API 
 
 #### Search Stock Prices
 <p align="center">
-<img src="https://media.giphy.com/media/KFVgvFRy2rtnsK8mnA/giphy.gif" alt="Giphy of stock price search functionality" width="300">
+<img src="https://media.giphy.com/media/fUqIPRXwWpRYftKb9D/giphy.gif" alt="Giphy of stock price search functionality" width="300">
 </p>
 
 ### COVID-19 API
 #### Search new coronavirus cases, death toll and recovered cases
 
 <p align="center">
-<img src="https://media.giphy.com/media/JUjV37ksKIMl1sdLt5/giphy.gif" alt="Giphy of stock price search functionality" width="700">
+<img src="https://media.giphy.com/media/ZZO1JOzXPZzftYRYcG/giphy.gif" alt="Giphy of stock price search functionality" width="700">
 </p>
 
 ## 🔑 How to Run the App
