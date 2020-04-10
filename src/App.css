@@ -24,12 +24,38 @@
 .label{
   color: white !important;
 }
-
+#weatherContainer {
+  position: absolute
+}
+#cloud{
+  font-size: 85px;
+  color: #f8fcfd;
+}
+#weatherName{
+  position: relative; 
+  left: -95px; 
+  top: -7px; 
+  color: #29B6F6;
+  font-weight: bold; 
+}
+#dashboardName{
+  color: "#f8fcfd";
+  position: relative;
+  left: -75px;
+  top: -7px;
+}
 @media only screen and (max-width: 600px) {
+  html {
+    background-color: #152238;
+  }
   #nav{
-    height: 50vh;
+ display: none;
+  }
+  #weatherContainer {
+    position: relative;
     border-bottom-left-radius: 30% 10% !important;
     border-bottom-right-radius: 30% 10% !important;
+    background-color: #152238
   }
   #coronanews{
     padding-left: 10px !important;
@@ -37,7 +63,7 @@
 
   }
   .weatherC{
-    width: 110px
+    width: 115px
   }
   .weatherI{
     width: 20px
@@ -49,20 +75,30 @@
     font-size: 8px;
   }
   #cloud{
-    font-size: 200px
+    font-size: 45px;
+    padding-left: 80%;
   }
   #cityName {
     font-size: 18px;
     position: relative;
-    top: -50px;
-    left: -50px;
+    display: block;
+    /* top: -50px;
+    left: -50px; */
   }
   #stateName {
     position: relative;
-    top: -50px;
-    left: -50px;
+    /* top: -50px;
+    left: -50px; */
+  }
+  #weatherName{
+    position: relative;
+    top: -25px;
+    left: 90px;
   }
   #dashboardName{
-    color:#29B6F6
+    color:#29B6F6;
+    position: relative;
+    top: -25px;
+    left: 100px;
   }
 }

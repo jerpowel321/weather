@@ -26,16 +26,6 @@ theme.typography.h5 = {
   },
 };
 
-// theme.typography.body2 = {
-//   fontSize: '1rem',
-//   '@media (min-width:600px)': {
-//     fontSize: '1.2rem',
-//   },
-//   [theme.breakpoints.up('md')]: {
-//     fontSize: '1.3rem',
-//   },
-// };
-
 
 function App() {
   return (

@@ -15,11 +15,9 @@ const styles = theme => ({
 	},
 	h5: {
 		color: 'white',
-		paddingTop: "10px",
-		position: "fixed",
 	},
 	form: {
-		padding: "50px",
+		padding: "20px",
 	},
 	textfield: {
 		marginRight: "20px",
@@ -63,7 +61,7 @@ class Form extends React.Component {
 			<div className={classes.root} >
 				<div style={{ paddingBottom: "20px" }}>
 					<Typography variant="h5" align="center" className={classes.h5}>
-						<i style={{ fontSize: "30px", paddingRight: "10px", color: "#29B6F6" }} className="fas fa-city"></i>	Provide the city you would like to search.
+						<i style={{ fontSize: "30px", paddingRight: "10px", color: "#29B6F6" }} className="fas fa-city"></i> Let's search the weather!
 					</Typography>
 				</div>
 				<form align="center" noValidate autoComplete="off" className={classes.form}>
