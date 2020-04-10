@@ -59,7 +59,7 @@ class Coronanews extends React.Component {
 				(result) => {
 					this.setState({
 						data: result,
-						ww: [result["Global"]["NewConfirmed"], result["Global"]["TotalConfirmed"], result["Global"]["NewDeaths"], result["Global"]["TotalDeaths"], result["Global"]["NewRecovered"], result["Global"]["TotalRecovered"]]
+						ww: [result["Global"]["TotalConfirmed"], result["Global"]["TotalDeaths"],result["Global"]["TotalRecovered"]]
 					}, () => {
 						if (this.state.ww.length > 0) {
 							for (let j = 0; j < 5; j++) {
@@ -161,12 +161,9 @@ class Coronanews extends React.Component {
 					<Container id="coronanews" align="center" style={{ padding: "20px 20px" }}>
 						{this.state.searchSuccess ? (
 							<Table
-								wwncases={this.state.ww[0]}
-								wwcases={this.state.ww[1]}
-								wwndeaths={this.state.ww[2]}
-								wwdeaths={this.state.ww[3]}
-								wwnrecovered={this.state.ww[4]}
-								wwrecovered={this.state.ww[5]}
+								wwcases={this.state.ww[0]}
+								wwdeaths={this.state.ww[1]}
+								wwrecovered={this.state.ww[2]}
 								usa={this.state.usa}
 								spain={this.state.spain}
 								italy={this.state.italy}

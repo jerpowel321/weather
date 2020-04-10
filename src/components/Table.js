@@ -22,7 +22,7 @@ export default function DenseTable(props) {
   const data = [props.usa, props.spain, props.italy, props.germany, props.china ]
   const classes = useStyles();
   const rows = [
-    createData('🌐Worldwide', props.wwcases, props.wwdeaths, props.wwnrecovered, props.wwrecovered),
+    createData('🌐Worldwide', props.wwcases, props.wwdeaths, props.wwrecovered),
     createData('🇺🇸United States', data[0]["TotalConfirmed"], data[0]["TotalDeaths"], data[0]["TotalRecovered"]),
     createData('🇪🇸Spain', data[1]["TotalConfirmed"], data[1]["TotalDeaths"], data[1]["TotalRecovered"]),
     createData('🇮🇹Italy', data[2]["TotalConfirmed"], data[2]["TotalDeaths"], data[2]["TotalRecovered"]),
