@@ -4,8 +4,10 @@
 ![dashboard](/public/dashboard.png "Image of dashboard")
 
 #### Mobile View
+
 <p align="center">
-![dashboard](/public/dashboardMobile.png "Image of dashboard Mobile View")
+
+![mobiledashboard](/public/dashboardMobile.png "Image of dashboard Mobile View")
 <p>
 
 ### MetaWeather API
