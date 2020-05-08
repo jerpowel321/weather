@@ -5,10 +5,7 @@
 
 #### Mobile View
 
-<p align="center">
-
 ![mobiledashboard](/public/dashboardMobile.png "Image of dashboard Mobile View")
-<p>
 
 ### MetaWeather API
 
